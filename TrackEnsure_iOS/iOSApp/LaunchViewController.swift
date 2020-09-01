@@ -8,17 +8,12 @@
 
 import TrackEnsureKit
 import TrackEnsureUIKit
-import Combine
-import Foundation
 
 public class LaunchViewController: NiblessViewController {
 
     // MARK: - Properties
     // View Model
     let viewModel: LaunchViewModel
-
-    // Combine
-    private var subscriptions = Set<AnyCancellable>()
 
     public init(viewModelFactory: LaunchViewModelFactory) {
         self.viewModel = viewModelFactory.makeLaunchViewModel()
