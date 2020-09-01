@@ -8,22 +8,136 @@
 
 /* Begin PBXBuildFile section */
 		578CD8DA24FEA50E00971069 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD8D924FEA50E00971069 /* AppDelegate.swift */; };
-		578CD8DC24FEA50E00971069 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD8DB24FEA50E00971069 /* SceneDelegate.swift */; };
-		578CD8DE24FEA50E00971069 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD8DD24FEA50E00971069 /* ViewController.swift */; };
-		578CD8E124FEA50E00971069 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 578CD8DF24FEA50E00971069 /* Main.storyboard */; };
 		578CD8E324FEA51200971069 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 578CD8E224FEA51200971069 /* Assets.xcassets */; };
 		578CD8E624FEA51200971069 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 578CD8E424FEA51200971069 /* LaunchScreen.storyboard */; };
+		578CD90824FEA94800971069 /* TrackEnsureKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 578CD90624FEA94800971069 /* TrackEnsureKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		578CD90B24FEA94800971069 /* TrackEnsureKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578CD90424FEA94800971069 /* TrackEnsureKit.framework */; };
+		578CD90C24FEA94800971069 /* TrackEnsureKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 578CD90424FEA94800971069 /* TrackEnsureKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		578CD91324FEA98A00971069 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD91224FEA98A00971069 /* Location.swift */; };
+		578CD91524FEAABE00971069 /* GasStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD8EF24FEA88600971069 /* GasStation.swift */; };
+		578CD91724FEAB1B00971069 /* Gas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD91624FEAB1B00971069 /* Gas.swift */; };
+		578CD92124FEADC100971069 /* TrackEnsure_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 578CD91F24FEADC100971069 /* TrackEnsure_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		578CD92424FEADC100971069 /* TrackEnsure_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578CD91D24FEADC100971069 /* TrackEnsure_iOS.framework */; };
+		578CD92524FEADC100971069 /* TrackEnsure_iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 578CD91D24FEADC100971069 /* TrackEnsure_iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		578CD92B24FEAED200971069 /* TEAppDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD92A24FEAED200971069 /* TEAppDependencyContainer.swift */; };
+		578CD92F24FEAF5D00971069 /* Undefined.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD92E24FEAF5D00971069 /* Undefined.swift */; };
+		578CD93124FEB0B700971069 /* TrackEnsureKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578CD90424FEA94800971069 /* TrackEnsureKit.framework */; };
+		578CD93224FEB0B700971069 /* TrackEnsureKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 578CD90424FEA94800971069 /* TrackEnsureKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		578CD93824FEB11900971069 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD93724FEB11900971069 /* MainViewController.swift */; };
+		578CD94224FEB16400971069 /* TrackEnsureUIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 578CD94024FEB16400971069 /* TrackEnsureUIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		578CD94524FEB16400971069 /* TrackEnsureUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578CD93E24FEB16400971069 /* TrackEnsureUIKit.framework */; };
+		578CD94624FEB16400971069 /* TrackEnsureUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 578CD93E24FEB16400971069 /* TrackEnsureUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		578CD94A24FEB18500971069 /* TrackEnsureKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578CD90424FEA94800971069 /* TrackEnsureKit.framework */; };
+		578CD94B24FEB18500971069 /* TrackEnsureKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 578CD90424FEA94800971069 /* TrackEnsureKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		578CD95224FEB1EE00971069 /* NiblessNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD95124FEB1EE00971069 /* NiblessNavigationController.swift */; };
+		578CD95424FEB21B00971069 /* NiblessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD95324FEB21B00971069 /* NiblessViewController.swift */; };
+		578CD95624FEB23900971069 /* NiblessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD95524FEB23900971069 /* NiblessView.swift */; };
+		578CD95924FEB6FD00971069 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD95824FEB6FD00971069 /* UIColor+hex.swift */; };
+		578CD95C24FEB8E500971069 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD95B24FEB8E500971069 /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		578CD90924FEA94800971069 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 578CD8CE24FEA50E00971069 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 578CD90324FEA94800971069;
+			remoteInfo = TrackEnsureKit;
+		};
+		578CD92224FEADC100971069 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 578CD8CE24FEA50E00971069 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 578CD91C24FEADC100971069;
+			remoteInfo = TrackEnsure_iOS;
+		};
+		578CD93324FEB0B700971069 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 578CD8CE24FEA50E00971069 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 578CD90324FEA94800971069;
+			remoteInfo = TrackEnsureKit;
+		};
+		578CD94324FEB16400971069 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 578CD8CE24FEA50E00971069 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 578CD93D24FEB16400971069;
+			remoteInfo = TrackEnsureUIKit;
+		};
+		578CD94C24FEB18500971069 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 578CD8CE24FEA50E00971069 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 578CD90324FEA94800971069;
+			remoteInfo = TrackEnsureKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		578CD91024FEA94800971069 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				578CD92524FEADC100971069 /* TrackEnsure_iOS.framework in Embed Frameworks */,
+				578CD90C24FEA94800971069 /* TrackEnsureKit.framework in Embed Frameworks */,
+				578CD94624FEB16400971069 /* TrackEnsureUIKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		578CD93524FEB0B700971069 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				578CD93224FEB0B700971069 /* TrackEnsureKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		578CD94E24FEB18500971069 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				578CD94B24FEB18500971069 /* TrackEnsureKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		578CD8D624FEA50E00971069 /* TrackEnsure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackEnsure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		578CD8D924FEA50E00971069 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		578CD8DB24FEA50E00971069 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		578CD8DD24FEA50E00971069 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		578CD8E024FEA50E00971069 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		578CD8E224FEA51200971069 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		578CD8E524FEA51200971069 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		578CD8E724FEA51200971069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		578CD8EF24FEA88600971069 /* GasStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasStation.swift; sourceTree = "<group>"; };
+		578CD90424FEA94800971069 /* TrackEnsureKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TrackEnsureKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		578CD90624FEA94800971069 /* TrackEnsureKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackEnsureKit.h; sourceTree = "<group>"; };
+		578CD90724FEA94800971069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		578CD91224FEA98A00971069 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		578CD91624FEAB1B00971069 /* Gas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gas.swift; sourceTree = "<group>"; };
+		578CD91D24FEADC100971069 /* TrackEnsure_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TrackEnsure_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		578CD91F24FEADC100971069 /* TrackEnsure_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackEnsure_iOS.h; sourceTree = "<group>"; };
+		578CD92024FEADC100971069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		578CD92A24FEAED200971069 /* TEAppDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEAppDependencyContainer.swift; sourceTree = "<group>"; };
+		578CD92E24FEAF5D00971069 /* Undefined.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Undefined.swift; sourceTree = "<group>"; };
+		578CD93724FEB11900971069 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		578CD93E24FEB16400971069 /* TrackEnsureUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TrackEnsureUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		578CD94024FEB16400971069 /* TrackEnsureUIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackEnsureUIKit.h; sourceTree = "<group>"; };
+		578CD94124FEB16400971069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		578CD95124FEB1EE00971069 /* NiblessNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiblessNavigationController.swift; sourceTree = "<group>"; };
+		578CD95324FEB21B00971069 /* NiblessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiblessViewController.swift; sourceTree = "<group>"; };
+		578CD95524FEB23900971069 /* NiblessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiblessView.swift; sourceTree = "<group>"; };
+		578CD95824FEB6FD00971069 /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
+		578CD95B24FEB8E500971069 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +145,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				578CD92424FEADC100971069 /* TrackEnsure_iOS.framework in Frameworks */,
+				578CD90B24FEA94800971069 /* TrackEnsureKit.framework in Frameworks */,
+				578CD94524FEB16400971069 /* TrackEnsureUIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		578CD90124FEA94800971069 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		578CD91A24FEADC100971069 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				578CD93124FEB0B700971069 /* TrackEnsureKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		578CD93B24FEB16400971069 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				578CD94A24FEB18500971069 /* TrackEnsureKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,7 +181,11 @@
 			isa = PBXGroup;
 			children = (
 				578CD8D824FEA50E00971069 /* TrackEnsure */,
+				578CD91E24FEADC100971069 /* TrackEnsure_iOS */,
+				578CD93F24FEB16400971069 /* TrackEnsureUIKit */,
+				578CD90524FEA94800971069 /* TrackEnsureKit */,
 				578CD8D724FEA50E00971069 /* Products */,
+				578CD93024FEB0B700971069 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -49,6 +193,9 @@
 			isa = PBXGroup;
 			children = (
 				578CD8D624FEA50E00971069 /* TrackEnsure.app */,
+				578CD90424FEA94800971069 /* TrackEnsureKit.framework */,
+				578CD91D24FEADC100971069 /* TrackEnsure_iOS.framework */,
+				578CD93E24FEB16400971069 /* TrackEnsureUIKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -57,9 +204,6 @@
 			isa = PBXGroup;
 			children = (
 				578CD8D924FEA50E00971069 /* AppDelegate.swift */,
-				578CD8DB24FEA50E00971069 /* SceneDelegate.swift */,
-				578CD8DD24FEA50E00971069 /* ViewController.swift */,
-				578CD8DF24FEA50E00971069 /* Main.storyboard */,
 				578CD8E224FEA51200971069 /* Assets.xcassets */,
 				578CD8E424FEA51200971069 /* LaunchScreen.storyboard */,
 				578CD8E724FEA51200971069 /* Info.plist */,
@@ -67,7 +211,151 @@
 			path = TrackEnsure;
 			sourceTree = "<group>";
 		};
+		578CD90524FEA94800971069 /* TrackEnsureKit */ = {
+			isa = PBXGroup;
+			children = (
+				578CD90624FEA94800971069 /* TrackEnsureKit.h */,
+				578CD90724FEA94800971069 /* Info.plist */,
+				578CD95A24FEB8D600971069 /* UILayer */,
+				578CD92D24FEAF4B00971069 /* Reusable */,
+				578CD91124FEA97B00971069 /* DataLayer */,
+				578CD92C24FEAF3F00971069 /* Helpers */,
+			);
+			path = TrackEnsureKit;
+			sourceTree = "<group>";
+		};
+		578CD91124FEA97B00971069 /* DataLayer */ = {
+			isa = PBXGroup;
+			children = (
+				578CD91424FEA99600971069 /* Model */,
+			);
+			path = DataLayer;
+			sourceTree = "<group>";
+		};
+		578CD91424FEA99600971069 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				578CD91224FEA98A00971069 /* Location.swift */,
+				578CD8EF24FEA88600971069 /* GasStation.swift */,
+				578CD91624FEAB1B00971069 /* Gas.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		578CD91E24FEADC100971069 /* TrackEnsure_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				578CD91F24FEADC100971069 /* TrackEnsure_iOS.h */,
+				578CD92024FEADC100971069 /* Info.plist */,
+				578CD92924FEAEAB00971069 /* iOSApp */,
+			);
+			path = TrackEnsure_iOS;
+			sourceTree = "<group>";
+		};
+		578CD92924FEAEAB00971069 /* iOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				578CD92A24FEAED200971069 /* TEAppDependencyContainer.swift */,
+				578CD93724FEB11900971069 /* MainViewController.swift */,
+			);
+			path = iOSApp;
+			sourceTree = "<group>";
+		};
+		578CD92C24FEAF3F00971069 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				578CD92E24FEAF5D00971069 /* Undefined.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		578CD92D24FEAF4B00971069 /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Reusable;
+			sourceTree = "<group>";
+		};
+		578CD93024FEB0B700971069 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		578CD93F24FEB16400971069 /* TrackEnsureUIKit */ = {
+			isa = PBXGroup;
+			children = (
+				578CD94024FEB16400971069 /* TrackEnsureUIKit.h */,
+				578CD94124FEB16400971069 /* Info.plist */,
+				578CD95724FEB6E400971069 /* Color */,
+				578CD94F24FEB19300971069 /* Reusable */,
+			);
+			path = TrackEnsureUIKit;
+			sourceTree = "<group>";
+		};
+		578CD94F24FEB19300971069 /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				578CD95024FEB19D00971069 /* NiblessComponents */,
+			);
+			path = Reusable;
+			sourceTree = "<group>";
+		};
+		578CD95024FEB19D00971069 /* NiblessComponents */ = {
+			isa = PBXGroup;
+			children = (
+				578CD95524FEB23900971069 /* NiblessView.swift */,
+				578CD95324FEB21B00971069 /* NiblessViewController.swift */,
+				578CD95124FEB1EE00971069 /* NiblessNavigationController.swift */,
+			);
+			path = NiblessComponents;
+			sourceTree = "<group>";
+		};
+		578CD95724FEB6E400971069 /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				578CD95824FEB6FD00971069 /* UIColor+hex.swift */,
+			);
+			path = Color;
+			sourceTree = "<group>";
+		};
+		578CD95A24FEB8D600971069 /* UILayer */ = {
+			isa = PBXGroup;
+			children = (
+				578CD95B24FEB8E500971069 /* MainViewModel.swift */,
+			);
+			path = UILayer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		578CD8FF24FEA94800971069 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				578CD90824FEA94800971069 /* TrackEnsureKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		578CD91824FEADC100971069 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				578CD92124FEADC100971069 /* TrackEnsure_iOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		578CD93924FEB16400971069 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				578CD94224FEB16400971069 /* TrackEnsureUIKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		578CD8D524FEA50E00971069 /* TrackEnsure */ = {
@@ -77,15 +365,77 @@
 				578CD8D224FEA50E00971069 /* Sources */,
 				578CD8D324FEA50E00971069 /* Frameworks */,
 				578CD8D424FEA50E00971069 /* Resources */,
+				578CD91024FEA94800971069 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				578CD90A24FEA94800971069 /* PBXTargetDependency */,
+				578CD92324FEADC100971069 /* PBXTargetDependency */,
+				578CD94424FEB16400971069 /* PBXTargetDependency */,
 			);
 			name = TrackEnsure;
 			productName = TrackEnsure;
 			productReference = 578CD8D624FEA50E00971069 /* TrackEnsure.app */;
 			productType = "com.apple.product-type.application";
+		};
+		578CD90324FEA94800971069 /* TrackEnsureKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 578CD90D24FEA94800971069 /* Build configuration list for PBXNativeTarget "TrackEnsureKit" */;
+			buildPhases = (
+				578CD8FF24FEA94800971069 /* Headers */,
+				578CD90024FEA94800971069 /* Sources */,
+				578CD90124FEA94800971069 /* Frameworks */,
+				578CD90224FEA94800971069 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TrackEnsureKit;
+			productName = TrackEnsureKit;
+			productReference = 578CD90424FEA94800971069 /* TrackEnsureKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		578CD91C24FEADC100971069 /* TrackEnsure_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 578CD92624FEADC100971069 /* Build configuration list for PBXNativeTarget "TrackEnsure_iOS" */;
+			buildPhases = (
+				578CD91824FEADC100971069 /* Headers */,
+				578CD91924FEADC100971069 /* Sources */,
+				578CD91A24FEADC100971069 /* Frameworks */,
+				578CD91B24FEADC100971069 /* Resources */,
+				578CD93524FEB0B700971069 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				578CD93424FEB0B700971069 /* PBXTargetDependency */,
+			);
+			name = TrackEnsure_iOS;
+			productName = TrackEnsure_iOS;
+			productReference = 578CD91D24FEADC100971069 /* TrackEnsure_iOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		578CD93D24FEB16400971069 /* TrackEnsureUIKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 578CD94724FEB16400971069 /* Build configuration list for PBXNativeTarget "TrackEnsureUIKit" */;
+			buildPhases = (
+				578CD93924FEB16400971069 /* Headers */,
+				578CD93A24FEB16400971069 /* Sources */,
+				578CD93B24FEB16400971069 /* Frameworks */,
+				578CD93C24FEB16400971069 /* Resources */,
+				578CD94E24FEB18500971069 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				578CD94D24FEB18500971069 /* PBXTargetDependency */,
+			);
+			name = TrackEnsureUIKit;
+			productName = TrackEnsureUIKit;
+			productReference = 578CD93E24FEB16400971069 /* TrackEnsureUIKit.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -99,6 +449,18 @@
 				TargetAttributes = {
 					578CD8D524FEA50E00971069 = {
 						CreatedOnToolsVersion = 11.6;
+					};
+					578CD90324FEA94800971069 = {
+						CreatedOnToolsVersion = 11.6;
+						LastSwiftMigration = 1160;
+					};
+					578CD91C24FEADC100971069 = {
+						CreatedOnToolsVersion = 11.6;
+						LastSwiftMigration = 1160;
+					};
+					578CD93D24FEB16400971069 = {
+						CreatedOnToolsVersion = 11.6;
+						LastSwiftMigration = 1160;
 					};
 				};
 			};
@@ -116,6 +478,9 @@
 			projectRoot = "";
 			targets = (
 				578CD8D524FEA50E00971069 /* TrackEnsure */,
+				578CD91C24FEADC100971069 /* TrackEnsure_iOS */,
+				578CD93D24FEB16400971069 /* TrackEnsureUIKit */,
+				578CD90324FEA94800971069 /* TrackEnsureKit */,
 			);
 		};
 /* End PBXProject section */
@@ -127,7 +492,27 @@
 			files = (
 				578CD8E624FEA51200971069 /* LaunchScreen.storyboard in Resources */,
 				578CD8E324FEA51200971069 /* Assets.xcassets in Resources */,
-				578CD8E124FEA50E00971069 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		578CD90224FEA94800971069 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		578CD91B24FEADC100971069 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		578CD93C24FEB16400971069 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +523,73 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				578CD8DE24FEA50E00971069 /* ViewController.swift in Sources */,
 				578CD8DA24FEA50E00971069 /* AppDelegate.swift in Sources */,
-				578CD8DC24FEA50E00971069 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		578CD90024FEA94800971069 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				578CD95C24FEB8E500971069 /* MainViewModel.swift in Sources */,
+				578CD92F24FEAF5D00971069 /* Undefined.swift in Sources */,
+				578CD91524FEAABE00971069 /* GasStation.swift in Sources */,
+				578CD91324FEA98A00971069 /* Location.swift in Sources */,
+				578CD91724FEAB1B00971069 /* Gas.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		578CD91924FEADC100971069 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				578CD92B24FEAED200971069 /* TEAppDependencyContainer.swift in Sources */,
+				578CD93824FEB11900971069 /* MainViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		578CD93A24FEB16400971069 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				578CD95624FEB23900971069 /* NiblessView.swift in Sources */,
+				578CD95924FEB6FD00971069 /* UIColor+hex.swift in Sources */,
+				578CD95224FEB1EE00971069 /* NiblessNavigationController.swift in Sources */,
+				578CD95424FEB21B00971069 /* NiblessViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		578CD8DF24FEA50E00971069 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				578CD8E024FEA50E00971069 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
+/* Begin PBXTargetDependency section */
+		578CD90A24FEA94800971069 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 578CD90324FEA94800971069 /* TrackEnsureKit */;
+			targetProxy = 578CD90924FEA94800971069 /* PBXContainerItemProxy */;
 		};
+		578CD92324FEADC100971069 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 578CD91C24FEADC100971069 /* TrackEnsure_iOS */;
+			targetProxy = 578CD92224FEADC100971069 /* PBXContainerItemProxy */;
+		};
+		578CD93424FEB0B700971069 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 578CD90324FEA94800971069 /* TrackEnsureKit */;
+			targetProxy = 578CD93324FEB0B700971069 /* PBXContainerItemProxy */;
+		};
+		578CD94424FEB16400971069 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 578CD93D24FEB16400971069 /* TrackEnsureUIKit */;
+			targetProxy = 578CD94324FEB16400971069 /* PBXContainerItemProxy */;
+		};
+		578CD94D24FEB18500971069 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 578CD90324FEA94800971069 /* TrackEnsureKit */;
+			targetProxy = 578CD94C24FEB18500971069 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
 		578CD8E424FEA51200971069 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -283,10 +718,12 @@
 		578CD8EB24FEA51200971069 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4K9UHWUGWY;
 				INFOPLIST_FILE = TrackEnsure/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -294,17 +731,19 @@
 				PRODUCT_BUNDLE_IDENTIFIER = yevii.dev.TrackEnsure;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		578CD8EC24FEA51200971069 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4K9UHWUGWY;
 				INFOPLIST_FILE = TrackEnsure/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,7 +751,190 @@
 				PRODUCT_BUNDLE_IDENTIFIER = yevii.dev.TrackEnsure;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		578CD90E24FEA94800971069 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4K9UHWUGWY;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = TrackEnsureKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = yevii.dev.TrackEnsureKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		578CD90F24FEA94800971069 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4K9UHWUGWY;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = TrackEnsureKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = yevii.dev.TrackEnsureKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		578CD92724FEADC100971069 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4K9UHWUGWY;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = TrackEnsure_iOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "yevii.dev.TrackEnsure-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		578CD92824FEADC100971069 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4K9UHWUGWY;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = TrackEnsure_iOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "yevii.dev.TrackEnsure-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		578CD94824FEB16400971069 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4K9UHWUGWY;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = TrackEnsureUIKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = yevii.dev.TrackEnsureUIKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		578CD94924FEB16400971069 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4K9UHWUGWY;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = TrackEnsureUIKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = yevii.dev.TrackEnsureUIKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -333,6 +955,33 @@
 			buildConfigurations = (
 				578CD8EB24FEA51200971069 /* Debug */,
 				578CD8EC24FEA51200971069 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		578CD90D24FEA94800971069 /* Build configuration list for PBXNativeTarget "TrackEnsureKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				578CD90E24FEA94800971069 /* Debug */,
+				578CD90F24FEA94800971069 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		578CD92624FEADC100971069 /* Build configuration list for PBXNativeTarget "TrackEnsure_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				578CD92724FEADC100971069 /* Debug */,
+				578CD92824FEADC100971069 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		578CD94724FEB16400971069 /* Build configuration list for PBXNativeTarget "TrackEnsureUIKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				578CD94824FEB16400971069 /* Debug */,
+				578CD94924FEB16400971069 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
