@@ -9,6 +9,7 @@
 import TrackEnsureKit
 import TrackEnsureUIKit
 import Combine
+import Foundation
 
 public class LaunchViewController: NiblessViewController {
 
@@ -19,14 +20,18 @@ public class LaunchViewController: NiblessViewController {
     // Combine
     private var subscriptions = Set<AnyCancellable>()
 
-    public init(viewModel: LaunchViewModel) {
-        self.viewModel = viewModel
+    public init(viewModelFactory: LaunchViewModelFactory) {
+        self.viewModel = viewModelFactory.makeLaunchViewModel()
         super.init()
     }
 
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+    public override func loadView() {
+        view = LaunchRootView(viewModel: viewModel)
     }
+}
 
+
+public protocol LaunchViewModelFactory {
+
+    func makeLaunchViewModel() -> LaunchViewModel
 }

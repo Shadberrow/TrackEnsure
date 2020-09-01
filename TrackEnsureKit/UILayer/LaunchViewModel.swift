@@ -31,10 +31,8 @@ public class LaunchViewModel {
 
     public func loadUserSession() {
         userSessionRepository.readUserSession()
-            .sink(receiveCompletion: { completion in
-                print(#line, #function, "Handle Error: ", completion) },
-                  receiveValue: { [weak self] userSession in
-                    self?.signedInResponder.signedIn(to: userSession) })
+            .sink(receiveCompletion: { [weak self] completion in self?.notSignedInResponder.notSignedIn() },
+                  receiveValue: { [weak self] userSession in self?.signedInResponder.signedIn(to: userSession) })
             .store(in: &subscriptions)
     }
 }

@@ -26,7 +26,7 @@ public class TEAppDependencyContainer {
         }
 
         func makeUserSessionDataStore() -> UserSessionDataStore {
-            return FakeUserSessionDataStore(hasToken: true)
+            return FakeUserSessionDataStore(hasToken: false)
         }
 
         func makeAuthRemoteApi() -> AuthRemoteApi {
@@ -46,18 +46,23 @@ public class TEAppDependencyContainer {
 
     public func makeMainViewController() -> MainViewController {
         let launchViewController = makeLaunchViewController()
+
+        let onboardingViewControllerFactory = { [unowned self] in
+            return self.makeOnboardingViewController()
+        }
+
         return MainViewController(viewModel: sharedMainViewModel,
-                                  launchViewController: launchViewController)
+                                  launchViewController: launchViewController,
+                                  onboardingViewControllerFactory: onboardingViewControllerFactory)
     }
 
     // Launching
 
-    private func makeLaunchViewController() -> LaunchViewController {
-        let viewModel = makeLaunchViewModel()
-        return LaunchViewController(viewModel: viewModel)
+    public func makeLaunchViewController() -> LaunchViewController {
+        return LaunchViewController(viewModelFactory: self)
     }
 
-    private func makeLaunchViewModel() -> LaunchViewModel {
+    public func makeLaunchViewModel() -> LaunchViewModel {
         return LaunchViewModel(userSessionRepository: sharedUserSessionRepository,
                                notSignedInResponder: sharedMainViewModel,
                                signedInResponder: sharedMainViewModel)
@@ -65,6 +70,17 @@ public class TEAppDependencyContainer {
 
     // Onboarding
 
+    public func makeOnboardingViewController() -> OnboardingViewController {
+        return OnboardingViewController(viewModelFactory: self)
+    }
+
+    public func makeOnboardingViewModel() -> OnboardingViewModel {
+        return OnboardingViewModel(userSessionRepository: sharedUserSessionRepository,
+                                   signedInResponder: sharedMainViewModel)
+    }
+
     // Signed-in
 
 }
+
+extension TEAppDependencyContainer: LaunchViewModelFactory, OnboardingViewModelFactory { }

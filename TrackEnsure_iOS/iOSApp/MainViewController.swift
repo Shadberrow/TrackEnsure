@@ -11,7 +11,7 @@ import TrackEnsureUIKit
 import TrackEnsureKit
 import Combine
 
-public class MainViewController: NiblessViewController {
+public class MainViewController: NiblessNavigationController {
 
     // MARK: - Properties
     // View Model
@@ -19,15 +19,20 @@ public class MainViewController: NiblessViewController {
 
     // Child View Controller
     let launchViewController: LaunchViewController
+    var onboardingViewController: OnboardingViewController?
 
     // Combine
     private var subscriptions = Set<AnyCancellable>()
 
+    private let makeOnboardingViewController: () -> OnboardingViewController
+
     // MARK: - Methods
     public init(viewModel: MainViewModel,
-                launchViewController: LaunchViewController) {
+                launchViewController: LaunchViewController,
+                onboardingViewControllerFactory: @escaping () -> OnboardingViewController) {
         self.viewModel = viewModel
         self.launchViewController = launchViewController
+        self.makeOnboardingViewController = onboardingViewControllerFactory
         super.init()
     }
 
@@ -43,15 +48,14 @@ public class MainViewController: NiblessViewController {
     }
 
     private func presentLaunching() {
-        print(#line, #function, #file)
-        launchViewController.modalPresentationStyle = .fullScreen
-        DispatchQueue.main
-            .asyncAfter(deadline: .now() + .milliseconds(10)) {
-                self.present(self.launchViewController, animated: false) }
+        viewControllers = [launchViewController]
     }
 
     private func presentOnboarding() {
-        print(#line, #function, #file)
+        let onboardingViewController = makeOnboardingViewController()
+        onboardingViewController.modalPresentationStyle = .fullScreen
+        viewControllers.append(onboardingViewController)
+        self.onboardingViewController = onboardingViewController
     }
 
     private func presentSignedIn(userSession: UserSession) {
@@ -60,6 +64,11 @@ public class MainViewController: NiblessViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+        isNavigationBarHidden = true
+    }
+
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         observeViewModel()
     }
 
