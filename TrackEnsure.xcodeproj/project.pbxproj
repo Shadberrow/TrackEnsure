@@ -34,6 +34,14 @@
 		578CD95624FEB23900971069 /* NiblessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD95524FEB23900971069 /* NiblessView.swift */; };
 		578CD95924FEB6FD00971069 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD95824FEB6FD00971069 /* UIColor+hex.swift */; };
 		578CD95C24FEB8E500971069 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD95B24FEB8E500971069 /* MainViewModel.swift */; };
+		578CD95F24FEBCF300971069 /* UserSessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD95E24FEBCF300971069 /* UserSessionRepository.swift */; };
+		578CD96124FEBD1B00971069 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD96024FEBD1B00971069 /* UserSession.swift */; };
+		578CD96324FEBD3900971069 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD96224FEBD3900971069 /* UserProfile.swift */; };
+		578CD96624FEBE3A00971069 /* RemoteUserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD96524FEBE3A00971069 /* RemoteUserSession.swift */; };
+		578CD96924FEC19B00971069 /* NewAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD96824FEC19B00971069 /* NewAccount.swift */; };
+		578CD96C24FEC31400971069 /* AuthRemoteApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD96B24FEC31400971069 /* AuthRemoteApi.swift */; };
+		578CD96F24FEC36400971069 /* FakeAuthRemoteApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD96E24FEC36400971069 /* FakeAuthRemoteApi.swift */; };
+		578CD97124FEC42400971069 /* AuthRemoteApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD97024FEC42400971069 /* AuthRemoteApiError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +146,14 @@
 		578CD95524FEB23900971069 /* NiblessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiblessView.swift; sourceTree = "<group>"; };
 		578CD95824FEB6FD00971069 /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
 		578CD95B24FEB8E500971069 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		578CD95E24FEBCF300971069 /* UserSessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionRepository.swift; sourceTree = "<group>"; };
+		578CD96024FEBD1B00971069 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		578CD96224FEBD3900971069 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		578CD96524FEBE3A00971069 /* RemoteUserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteUserSession.swift; sourceTree = "<group>"; };
+		578CD96824FEC19B00971069 /* NewAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccount.swift; sourceTree = "<group>"; };
+		578CD96B24FEC31400971069 /* AuthRemoteApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRemoteApi.swift; sourceTree = "<group>"; };
+		578CD96E24FEC36400971069 /* FakeAuthRemoteApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAuthRemoteApi.swift; sourceTree = "<group>"; };
+		578CD97024FEC42400971069 /* AuthRemoteApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRemoteApiError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +243,7 @@
 		578CD91124FEA97B00971069 /* DataLayer */ = {
 			isa = PBXGroup;
 			children = (
+				578CD95D24FEBCD800971069 /* Repositories */,
 				578CD91424FEA99600971069 /* Model */,
 			);
 			path = DataLayer;
@@ -238,6 +255,10 @@
 				578CD91224FEA98A00971069 /* Location.swift */,
 				578CD8EF24FEA88600971069 /* GasStation.swift */,
 				578CD91624FEAB1B00971069 /* Gas.swift */,
+				578CD96024FEBD1B00971069 /* UserSession.swift */,
+				578CD96224FEBD3900971069 /* UserProfile.swift */,
+				578CD96824FEC19B00971069 /* NewAccount.swift */,
+				578CD97024FEC42400971069 /* AuthRemoteApiError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -326,6 +347,49 @@
 				578CD95B24FEB8E500971069 /* MainViewModel.swift */,
 			);
 			path = UILayer;
+			sourceTree = "<group>";
+		};
+		578CD95D24FEBCD800971069 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				578CD95E24FEBCF300971069 /* UserSessionRepository.swift */,
+				578CD96424FEBE2900971069 /* Remote */,
+				578CD96724FEBED800971069 /* Persistance */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		578CD96424FEBE2900971069 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				578CD96524FEBE3A00971069 /* RemoteUserSession.swift */,
+				578CD96A24FEC30600971069 /* Auth */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		578CD96724FEBED800971069 /* Persistance */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Persistance;
+			sourceTree = "<group>";
+		};
+		578CD96A24FEC30600971069 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				578CD96B24FEC31400971069 /* AuthRemoteApi.swift */,
+				578CD96D24FEC34A00971069 /* Implementations */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		578CD96D24FEC34A00971069 /* Implementations */ = {
+			isa = PBXGroup;
+			children = (
+				578CD96E24FEC36400971069 /* FakeAuthRemoteApi.swift */,
+			);
+			path = Implementations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -531,11 +595,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				578CD96924FEC19B00971069 /* NewAccount.swift in Sources */,
 				578CD95C24FEB8E500971069 /* MainViewModel.swift in Sources */,
+				578CD95F24FEBCF300971069 /* UserSessionRepository.swift in Sources */,
 				578CD92F24FEAF5D00971069 /* Undefined.swift in Sources */,
+				578CD96124FEBD1B00971069 /* UserSession.swift in Sources */,
+				578CD96C24FEC31400971069 /* AuthRemoteApi.swift in Sources */,
+				578CD96624FEBE3A00971069 /* RemoteUserSession.swift in Sources */,
+				578CD96324FEBD3900971069 /* UserProfile.swift in Sources */,
 				578CD91524FEAABE00971069 /* GasStation.swift in Sources */,
+				578CD96F24FEC36400971069 /* FakeAuthRemoteApi.swift in Sources */,
 				578CD91324FEA98A00971069 /* Location.swift in Sources */,
 				578CD91724FEAB1B00971069 /* Gas.swift in Sources */,
+				578CD97124FEC42400971069 /* AuthRemoteApiError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
