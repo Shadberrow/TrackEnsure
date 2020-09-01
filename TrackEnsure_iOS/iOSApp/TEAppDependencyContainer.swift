@@ -14,15 +14,30 @@ public class TEAppDependencyContainer {
     // MARK: - Properties
 
     // Long-lived dependencies
+    let sharedUserSessionRepository: UserSessionRepository
     let sharedMainViewModel: MainViewModel
 
     // MARK: - Methods
     public init() {
+        func makeUserSessionRepository() -> UserSessionRepository {
+            let dataStore = makeUserSessionDataStore()
+            let remoteApi = makeAuthRemoteApi()
+            return TEUserSessionRepository(dataStore: dataStore, remoteApi: remoteApi)
+        }
+
+        func makeUserSessionDataStore() -> UserSessionDataStore {
+            return FakeUserSessionDataStore(hasToken: true)
+        }
+
+        func makeAuthRemoteApi() -> AuthRemoteApi {
+            return FakeAuthRemoteApi()
+        }
 
         func makeMainViewModel() -> MainViewModel {
             return MainViewModel()
         }
 
+        self.sharedUserSessionRepository = makeUserSessionRepository()
         self.sharedMainViewModel = makeMainViewModel()
     }
 

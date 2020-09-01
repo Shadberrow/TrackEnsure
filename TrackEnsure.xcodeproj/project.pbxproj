@@ -41,7 +41,9 @@
 		578CD96924FEC19B00971069 /* NewAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD96824FEC19B00971069 /* NewAccount.swift */; };
 		578CD96C24FEC31400971069 /* AuthRemoteApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD96B24FEC31400971069 /* AuthRemoteApi.swift */; };
 		578CD96F24FEC36400971069 /* FakeAuthRemoteApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD96E24FEC36400971069 /* FakeAuthRemoteApi.swift */; };
-		578CD97124FEC42400971069 /* AuthRemoteApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD97024FEC42400971069 /* AuthRemoteApiError.swift */; };
+		578CD97324FEC77F00971069 /* UserSessionDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD97224FEC77F00971069 /* UserSessionDataStore.swift */; };
+		578CD97624FEC93900971069 /* FakeUserSessionDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD97524FEC93900971069 /* FakeUserSessionDataStore.swift */; };
+		578CD97824FECCE000971069 /* TEUserSessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD97724FECCE000971069 /* TEUserSessionRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,7 +155,9 @@
 		578CD96824FEC19B00971069 /* NewAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccount.swift; sourceTree = "<group>"; };
 		578CD96B24FEC31400971069 /* AuthRemoteApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRemoteApi.swift; sourceTree = "<group>"; };
 		578CD96E24FEC36400971069 /* FakeAuthRemoteApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAuthRemoteApi.swift; sourceTree = "<group>"; };
-		578CD97024FEC42400971069 /* AuthRemoteApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRemoteApiError.swift; sourceTree = "<group>"; };
+		578CD97224FEC77F00971069 /* UserSessionDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionDataStore.swift; sourceTree = "<group>"; };
+		578CD97524FEC93900971069 /* FakeUserSessionDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUserSessionDataStore.swift; sourceTree = "<group>"; };
+		578CD97724FECCE000971069 /* TEUserSessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEUserSessionRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,7 +262,6 @@
 				578CD96024FEBD1B00971069 /* UserSession.swift */,
 				578CD96224FEBD3900971069 /* UserProfile.swift */,
 				578CD96824FEC19B00971069 /* NewAccount.swift */,
-				578CD97024FEC42400971069 /* AuthRemoteApiError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 			isa = PBXGroup;
 			children = (
 				578CD95E24FEBCF300971069 /* UserSessionRepository.swift */,
+				578CD97724FECCE000971069 /* TEUserSessionRepository.swift */,
 				578CD96424FEBE2900971069 /* Remote */,
 				578CD96724FEBED800971069 /* Persistance */,
 			);
@@ -371,6 +375,8 @@
 		578CD96724FEBED800971069 /* Persistance */ = {
 			isa = PBXGroup;
 			children = (
+				578CD97224FEC77F00971069 /* UserSessionDataStore.swift */,
+				578CD97424FEC8FB00971069 /* Implementations */,
 			);
 			path = Persistance;
 			sourceTree = "<group>";
@@ -388,6 +394,14 @@
 			isa = PBXGroup;
 			children = (
 				578CD96E24FEC36400971069 /* FakeAuthRemoteApi.swift */,
+			);
+			path = Implementations;
+			sourceTree = "<group>";
+		};
+		578CD97424FEC8FB00971069 /* Implementations */ = {
+			isa = PBXGroup;
+			children = (
+				578CD97524FEC93900971069 /* FakeUserSessionDataStore.swift */,
 			);
 			path = Implementations;
 			sourceTree = "<group>";
@@ -595,6 +609,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				578CD97624FEC93900971069 /* FakeUserSessionDataStore.swift in Sources */,
 				578CD96924FEC19B00971069 /* NewAccount.swift in Sources */,
 				578CD95C24FEB8E500971069 /* MainViewModel.swift in Sources */,
 				578CD95F24FEBCF300971069 /* UserSessionRepository.swift in Sources */,
@@ -605,9 +620,10 @@
 				578CD96324FEBD3900971069 /* UserProfile.swift in Sources */,
 				578CD91524FEAABE00971069 /* GasStation.swift in Sources */,
 				578CD96F24FEC36400971069 /* FakeAuthRemoteApi.swift in Sources */,
+				578CD97824FECCE000971069 /* TEUserSessionRepository.swift in Sources */,
 				578CD91324FEA98A00971069 /* Location.swift in Sources */,
 				578CD91724FEAB1B00971069 /* Gas.swift in Sources */,
-				578CD97124FEC42400971069 /* AuthRemoteApiError.swift in Sources */,
+				578CD97324FEC77F00971069 /* UserSessionDataStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

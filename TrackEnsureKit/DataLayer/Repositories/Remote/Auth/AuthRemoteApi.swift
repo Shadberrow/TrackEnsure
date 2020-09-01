@@ -9,8 +9,12 @@
 import Foundation
 import Combine
 
+public enum AuthRemoteApiError: Error {
+    case unknown
+}
+
 public protocol AuthRemoteApi {
     
-    func signIn(email: String, password: String) -> Future<UserSession, AuthRemoteApiError>
-    func signUp(account: NewAccount) -> Future<UserSession, AuthRemoteApiError>
+    func signIn(email: String, password: String) -> Future<UserSession, Error>
+    func signUp(account: NewAccount) -> Future<UserSession, Error>
 }

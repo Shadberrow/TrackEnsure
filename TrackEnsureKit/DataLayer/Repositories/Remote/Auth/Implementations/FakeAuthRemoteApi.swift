@@ -14,7 +14,7 @@ public struct FakeAuthRemoteApi: AuthRemoteApi {
     // MARK: - Methods
     public init() {}
 
-    public func signIn(email: String, password: String) -> Future<UserSession, AuthRemoteApiError> {
+    public func signIn(email: String, password: String) -> Future<UserSession, Error> {
         guard email == "johndoe@gmail.com" && password == "password" else {
             return Future { $0(.failure(AuthRemoteApiError.unknown)) }
         }
@@ -29,7 +29,7 @@ public struct FakeAuthRemoteApi: AuthRemoteApi {
         }
     }
 
-    public func signUp(account: NewAccount) -> Future<UserSession, AuthRemoteApiError> {
+    public func signUp(account: NewAccount) -> Future<UserSession, Error> {
         return Future { promise in
             let profile = UserProfile(name: account.name, email: account.email)
             let remoteUserSession = RemoteUserSession(token: "j0hnd03_signed_up")
