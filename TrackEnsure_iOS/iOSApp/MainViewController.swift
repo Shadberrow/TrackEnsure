@@ -45,9 +45,9 @@ public class MainViewController: NiblessViewController {
     private func presentLaunching() {
         print(#line, #function, #file)
         launchViewController.modalPresentationStyle = .fullScreen
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.present(self.launchViewController, animated: false)
-        }
+        DispatchQueue.main
+            .asyncAfter(deadline: .now() + .milliseconds(10)) {
+                self.present(self.launchViewController, animated: false) }
     }
 
     private func presentOnboarding() {
