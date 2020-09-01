@@ -41,7 +41,30 @@ public class TEAppDependencyContainer {
         self.sharedMainViewModel = makeMainViewModel()
     }
 
-    public func makeMainViewController() -> UINavigationController {
-        return undefined()
+    // Main
+    // Funcitons to create MainViewController
+
+    public func makeMainViewController() -> MainViewController {
+        let launchViewController = makeLaunchViewController()
+        return MainViewController(viewModel: sharedMainViewModel,
+                                  launchViewController: launchViewController)
     }
+
+    // Launching
+
+    private func makeLaunchViewController() -> LaunchViewController {
+        let viewModel = makeLaunchViewModel()
+        return LaunchViewController(viewModel: viewModel)
+    }
+
+    private func makeLaunchViewModel() -> LaunchViewModel {
+        return LaunchViewModel(userSessionRepository: sharedUserSessionRepository,
+                               notSignedInResponder: sharedMainViewModel,
+                               signedInResponder: sharedMainViewModel)
+    }
+
+    // Onboarding
+
+    // Signed-in
+
 }

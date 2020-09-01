@@ -44,6 +44,12 @@
 		578CD97324FEC77F00971069 /* UserSessionDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD97224FEC77F00971069 /* UserSessionDataStore.swift */; };
 		578CD97624FEC93900971069 /* FakeUserSessionDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD97524FEC93900971069 /* FakeUserSessionDataStore.swift */; };
 		578CD97824FECCE000971069 /* TEUserSessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD97724FECCE000971069 /* TEUserSessionRepository.swift */; };
+		578CD97A24FED29200971069 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD97924FED29200971069 /* MainView.swift */; };
+		578CD97C24FED3AF00971069 /* SignedInResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD97B24FED3AF00971069 /* SignedInResponder.swift */; };
+		578CD97E24FED3C400971069 /* NotSignedInResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD97D24FED3C400971069 /* NotSignedInResponder.swift */; };
+		578CD98024FED82800971069 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD97F24FED82800971069 /* LaunchViewController.swift */; };
+		578CD98224FED86B00971069 /* LaunchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD98124FED86B00971069 /* LaunchViewModel.swift */; };
+		578CD98424FEDECC00971069 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD98324FEDECC00971069 /* SceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +164,12 @@
 		578CD97224FEC77F00971069 /* UserSessionDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionDataStore.swift; sourceTree = "<group>"; };
 		578CD97524FEC93900971069 /* FakeUserSessionDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUserSessionDataStore.swift; sourceTree = "<group>"; };
 		578CD97724FECCE000971069 /* TEUserSessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEUserSessionRepository.swift; sourceTree = "<group>"; };
+		578CD97924FED29200971069 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		578CD97B24FED3AF00971069 /* SignedInResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedInResponder.swift; sourceTree = "<group>"; };
+		578CD97D24FED3C400971069 /* NotSignedInResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotSignedInResponder.swift; sourceTree = "<group>"; };
+		578CD97F24FED82800971069 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		578CD98124FED86B00971069 /* LaunchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewModel.swift; sourceTree = "<group>"; };
+		578CD98324FEDECC00971069 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				578CD8D924FEA50E00971069 /* AppDelegate.swift */,
+				578CD98324FEDECC00971069 /* SceneDelegate.swift */,
 				578CD8E224FEA51200971069 /* Assets.xcassets */,
 				578CD8E424FEA51200971069 /* LaunchScreen.storyboard */,
 				578CD8E724FEA51200971069 /* Info.plist */,
@@ -281,6 +294,7 @@
 			children = (
 				578CD92A24FEAED200971069 /* TEAppDependencyContainer.swift */,
 				578CD93724FEB11900971069 /* MainViewController.swift */,
+				578CD97F24FED82800971069 /* LaunchViewController.swift */,
 			);
 			path = iOSApp;
 			sourceTree = "<group>";
@@ -348,6 +362,10 @@
 			isa = PBXGroup;
 			children = (
 				578CD95B24FEB8E500971069 /* MainViewModel.swift */,
+				578CD97924FED29200971069 /* MainView.swift */,
+				578CD98124FED86B00971069 /* LaunchViewModel.swift */,
+				578CD97B24FED3AF00971069 /* SignedInResponder.swift */,
+				578CD97D24FED3C400971069 /* NotSignedInResponder.swift */,
 			);
 			path = UILayer;
 			sourceTree = "<group>";
@@ -602,6 +620,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				578CD8DA24FEA50E00971069 /* AppDelegate.swift in Sources */,
+				578CD98424FEDECC00971069 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,15 +633,19 @@
 				578CD95C24FEB8E500971069 /* MainViewModel.swift in Sources */,
 				578CD95F24FEBCF300971069 /* UserSessionRepository.swift in Sources */,
 				578CD92F24FEAF5D00971069 /* Undefined.swift in Sources */,
+				578CD97E24FED3C400971069 /* NotSignedInResponder.swift in Sources */,
+				578CD98224FED86B00971069 /* LaunchViewModel.swift in Sources */,
 				578CD96124FEBD1B00971069 /* UserSession.swift in Sources */,
 				578CD96C24FEC31400971069 /* AuthRemoteApi.swift in Sources */,
 				578CD96624FEBE3A00971069 /* RemoteUserSession.swift in Sources */,
 				578CD96324FEBD3900971069 /* UserProfile.swift in Sources */,
+				578CD97A24FED29200971069 /* MainView.swift in Sources */,
 				578CD91524FEAABE00971069 /* GasStation.swift in Sources */,
 				578CD96F24FEC36400971069 /* FakeAuthRemoteApi.swift in Sources */,
 				578CD97824FECCE000971069 /* TEUserSessionRepository.swift in Sources */,
 				578CD91324FEA98A00971069 /* Location.swift in Sources */,
 				578CD91724FEAB1B00971069 /* Gas.swift in Sources */,
+				578CD97C24FED3AF00971069 /* SignedInResponder.swift in Sources */,
 				578CD97324FEC77F00971069 /* UserSessionDataStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -632,6 +655,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				578CD92B24FEAED200971069 /* TEAppDependencyContainer.swift in Sources */,
+				578CD98024FED82800971069 /* LaunchViewController.swift in Sources */,
 				578CD93824FEB11900971069 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

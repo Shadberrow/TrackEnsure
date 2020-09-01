@@ -7,10 +7,25 @@
 //
 
 import Foundation
+import Combine
 
-public class MainViewModel {
+public class MainViewModel: SignedInResponder, NotSignedInResponder {
+
+    // MARK: - Properties
+    public var viewPublisher: AnyPublisher<MainView, Never> { return viewSubject.eraseToAnyPublisher() }
+    private let viewSubject = CurrentValueSubject<MainView, Never>(.launching)
 
     // MARK: - Methods
     public init() {}
+
+    // MARK: - SignedInResponder Implementation
+    public func signedIn(to userSession: UserSession) {
+        viewSubject.send(.signedIn(userSession: userSession))
+    }
+
+    // MARK: - NotSignedInResponder Implementation
+    public func notSignedIn() {
+        viewSubject.send(.onboarding)
+    }
 
 }

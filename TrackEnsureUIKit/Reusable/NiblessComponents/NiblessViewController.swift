@@ -18,14 +18,14 @@ open class NiblessViewController: UIViewController {
     @available(*, unavailable,
         message: "Loading this view from a nib is unavailable in favor of initializer dependency injection"
     )
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
     @available(*, unavailable,
         message: "Loading this view from a nib is unavailable in favor of initializer dependency injection"
     )
-    required public init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("Loading this view from a nib is unavailable in favor of initializer dependency injection")
     }
 }
