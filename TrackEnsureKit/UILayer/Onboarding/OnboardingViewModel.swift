@@ -10,8 +10,6 @@ import Combine
 
 public class OnboardingViewModel {
 
-    typealias SignInCredentials = (email: String, password: String)
-    typealias SignUpCredentials = (name: String, email: String, password: String)
     typealias Credentials = (name: String, email: String, password: String)
 
     enum Mode: Int {
