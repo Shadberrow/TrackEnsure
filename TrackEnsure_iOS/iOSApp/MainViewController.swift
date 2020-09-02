@@ -20,6 +20,7 @@ public class MainViewController: NiblessNavigationController {
     // Child View Controller
     let launchViewController: LaunchViewController
     var onboardingViewController: OnboardingViewController?
+//    var homeViewController: HomeViewController?
 
     // Combine
     private var subscriptions = Set<AnyCancellable>()
@@ -48,18 +49,30 @@ public class MainViewController: NiblessNavigationController {
     }
 
     private func presentLaunching() {
-        viewControllers = [launchViewController]
+        addFullScreen(childViewController: launchViewController)
     }
 
     private func presentOnboarding() {
         let onboardingViewController = makeOnboardingViewController()
         onboardingViewController.modalPresentationStyle = .fullScreen
-        viewControllers.append(onboardingViewController)
+
+        present(onboardingViewController, animated: true)
+        
         self.onboardingViewController = onboardingViewController
     }
 
     private func presentSignedIn(userSession: UserSession) {
-        print(#line, #function, #file)
+        remove(childViewController: launchViewController)
+        
+        let vc = UIViewController()
+        vc.view.backgroundColor = .orange
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
+
+        if onboardingViewController?.presentingViewController != nil {
+            self.onboardingViewController = nil
+            dismiss(animated: true)
+        }
     }
 
     public override func viewDidLoad() {
@@ -75,5 +88,4 @@ public class MainViewController: NiblessNavigationController {
     private func observeViewModel() {
         subscribe(on: viewModel.viewPublisher)
     }
-
 }

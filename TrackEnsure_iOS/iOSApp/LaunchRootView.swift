@@ -24,6 +24,8 @@ public class LaunchRootView: NiblessView {
         loadUserSession()
     }
 
+    deinit { print("DEINIT: ", String(describing: self)) }
+
     private func styleView() {
         backgroundColor = .systemYellow
     }

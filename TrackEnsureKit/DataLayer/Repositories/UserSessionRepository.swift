@@ -11,8 +11,8 @@ import Combine
 
 public protocol UserSessionRepository {
     
-    func readUserSession() -> Future<UserSession, Error>
-    func signIn(email: String, password: String) -> Future<UserSession, Error>
-    func signUp(newAccount: NewAccount) -> Future<UserSession, Error>
-    func signOut(userSession: UserSession) -> Future<UserSession, Error>
+    func readUserSession() -> Result<UserSession, Error>
+    func signIn(email: String, password: String) -> Result<UserSession, Error>
+    func signUp(newAccount: NewAccount) -> Result<UserSession, Error>
+    func signOut(userSession: UserSession) -> Result<UserSession, Error>
 }

@@ -14,27 +14,21 @@ public struct FakeAuthRemoteApi: AuthRemoteApi {
     // MARK: - Methods
     public init() {}
 
-    public func signIn(email: String, password: String) -> Future<UserSession, Error> {
+    public func signIn(email: String, password: String) -> Result<UserSession, Error> {
         guard email == "johndoe@gmail.com" && password == "password" else {
-            return Future { $0(.failure(AuthRemoteApiError.unknown)) }
+            return .failure(AuthRemoteApiError.unknown)
         }
 
-        return Future { promise in
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-                let profile = UserProfile(name: "John Doe", email: "johndoe@gmail.com")
-                let remoteUserSession = RemoteUserSession(token: "j0hnd03_signed_in")
-                let userSession = UserSession(profile: profile, remoteSession: remoteUserSession)
-                promise(.success(userSession))
-            }
-        }
+        let profile = UserProfile(name: "John Doe", email: "johndoe@gmail.com")
+        let remoteUserSession = RemoteUserSession(token: "j0hnd03_signed_in")
+        let userSession = UserSession(profile: profile, remoteSession: remoteUserSession)
+        return .success(userSession)
     }
 
-    public func signUp(account: NewAccount) -> Future<UserSession, Error> {
-        return Future { promise in
-            let profile = UserProfile(name: account.name, email: account.email)
-            let remoteUserSession = RemoteUserSession(token: "j0hnd03_signed_up")
-            let userSession = UserSession(profile: profile, remoteSession: remoteUserSession)
-            promise(.success(userSession))
-        }
+    public func signUp(account: NewAccount) -> Result<UserSession, Error> {
+        let profile = UserProfile(name: account.name, email: account.email)
+        let remoteUserSession = RemoteUserSession(token: "j0hnd03_signed_up")
+        let userSession = UserSession(profile: profile, remoteSession: remoteUserSession)
+        return .success(userSession)
     }
 }

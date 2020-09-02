@@ -20,6 +20,8 @@ public class LaunchViewController: NiblessViewController {
         super.init()
     }
 
+    deinit { print("DEINIT: ", String(describing: self)) }
+
     public override func loadView() {
         view = LaunchRootView(viewModel: viewModel)
     }

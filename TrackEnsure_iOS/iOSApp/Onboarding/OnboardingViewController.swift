@@ -21,6 +21,12 @@ public class OnboardingViewController: NiblessViewController {
         super.init()
     }
 
+    deinit { print("DEINIT: ", String(describing: self)) }
+
+    public override func loadView() {
+        view = OnboardingRootView(viewModel: viewModel)
+    }
+
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemRed

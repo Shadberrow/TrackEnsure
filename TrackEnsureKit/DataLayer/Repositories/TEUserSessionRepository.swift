@@ -23,19 +23,19 @@ public class TEUserSessionRepository: UserSessionRepository {
     }
 
     // MARK: - UserSessionRepository Implementation
-    public func readUserSession() -> Future<UserSession, Error> {
+    public func readUserSession() -> Result<UserSession, Error> {
         return dataStore.readUserSession()
     }
 
-    public func signIn(email: String, password: String) -> Future<UserSession, Error> {
+    public func signIn(email: String, password: String) -> Result<UserSession, Error> {
         return remoteApi.signIn(email: email, password: password)
     }
 
-    public func signUp(newAccount: NewAccount) -> Future<UserSession, Error> {
+    public func signUp(newAccount: NewAccount) -> Result<UserSession, Error> {
         return remoteApi.signUp(account: newAccount)
     }
 
-    public func signOut(userSession: UserSession) -> Future<UserSession, Error> {
+    public func signOut(userSession: UserSession) -> Result<UserSession, Error> {
         return dataStore.delete(userSession: userSession)
     }
 }

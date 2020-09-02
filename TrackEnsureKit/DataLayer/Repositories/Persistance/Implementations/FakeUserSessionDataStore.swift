@@ -19,31 +19,31 @@ public class FakeUserSessionDataStore: UserSessionDataStore {
         self.hasToken = hasToken
     }
 
-    public func readUserSession() -> Future<UserSession, Error> {
+    public func readUserSession() -> Result<UserSession, Error> {
         return hasToken ? runHasToken() : runDoesNotHaveToken()
     }
 
-    public func save(userSession: UserSession) -> Future<UserSession, Error> {
-        return Future { $0(.success(userSession)) }
+    public func save(userSession: UserSession) -> Result<UserSession, Error> {
+        return .success(userSession)
     }
 
-    public func delete(userSession: UserSession) -> Future<UserSession, Error> {
-        return Future { $0(.success(userSession)) }
+    public func delete(userSession: UserSession) -> Result<UserSession, Error> {
+        return .success(userSession)
     }
 
-    private func runHasToken() -> Future<UserSession, Error> {
+    private func runHasToken() -> Result<UserSession, Error> {
         print("Try to read user session from fake disk ...")
         print("  simulating having user session with token fak3_r3m0t3_t0k3n ...")
         print("  returning user session with token fak3_r3m0t3_t0k3n ...")
         let profile = UserProfile(name: "John Doe", email: "johndoe@gmail.com")
         let remoteSession = RemoteUserSession(token: "fak3_r3m0t3_t0k3n")
-        return Future { $0(.success(UserSession(profile: profile, remoteSession: remoteSession))) }
+        return .success(UserSession(profile: profile, remoteSession: remoteSession))
     }
 
-    private func runDoesNotHaveToken() -> Future<UserSession, Error> {
+    private func runDoesNotHaveToken() -> Result<UserSession, Error> {
         print("Try to read user session from fake disk ...")
         print("  simulating empty disk ...")
         print("  returning nil ...")
-        return Future { $0(.failure(DataStoreError.invalidToken)) }
+        return .failure(DataStoreError.invalidToken)
     }
 }

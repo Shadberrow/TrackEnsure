@@ -29,10 +29,13 @@ public class LaunchViewModel {
         self.signedInResponder = signedInResponder
     }
 
+    deinit { print("DEINIT: ", String(describing: self)) }
+
     public func loadUserSession() {
-        userSessionRepository.readUserSession()
-            .sink(receiveCompletion: { [weak self] completion in self?.notSignedInResponder.notSignedIn() },
-                  receiveValue: { [weak self] userSession in self?.signedInResponder.signedIn(to: userSession) })
-            .store(in: &subscriptions)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+            switch self.userSessionRepository.readUserSession() {
+            case let .success(session): self.signedInResponder.signedIn(to: session)
+            case .failure: self.notSignedInResponder.notSignedIn() }
+        }
     }
 }

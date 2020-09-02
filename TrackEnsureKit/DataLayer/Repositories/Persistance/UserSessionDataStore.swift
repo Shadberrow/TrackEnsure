@@ -18,7 +18,7 @@ public enum DataStoreError: Error {
 
 public protocol UserSessionDataStore {
 
-    func readUserSession() -> Future<UserSession, Error>
-    func save(userSession: UserSession) -> Future<UserSession, Error>
-    func delete(userSession: UserSession) -> Future<UserSession, Error>
+    func readUserSession() -> Result<UserSession, Error>
+    func save(userSession: UserSession) -> Result<UserSession, Error>
+    func delete(userSession: UserSession) -> Result<UserSession, Error>
 }
