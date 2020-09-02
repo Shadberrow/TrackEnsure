@@ -35,12 +35,11 @@ public class OnboardingViewModel {
     public let onboardingModeSubject = CurrentValueSubject<Int, Never>(0)
 
     private let isButtonEnabledSubject = CurrentValueSubject<Bool, Never>(true)
-//    private let unwrappedCredentials: AnyPublisher<Credentials, Never>
     private let credentialsSubject = CurrentValueSubject<Credentials, Never>(("", "", ""))
-    private let signInCredentials: AnyPublisher<SignInCredentials, Never>
-    private let signUpCredentials: AnyPublisher<SignUpCredentials, Never>
-    private let validatedSignInCredentials: AnyPublisher<Bool, Never>
-    private let validatedSignUpCredentials: AnyPublisher<Bool, Never>
+//    private let signInCredentials: AnyPublisher<SignInCredentials, Never>
+//    private let signUpCredentials: AnyPublisher<SignUpCredentials, Never>
+//    private let validatedSignInCredentials: AnyPublisher<Bool, Never>
+//    private let validatedSignUpCredentials: AnyPublisher<Bool, Never>
 
     private var subscriptions = Set<AnyCancellable>()
 
@@ -50,14 +49,11 @@ public class OnboardingViewModel {
         self.userSessionRepository = userSessionRepository
         self.signedInResponder = signedInResponder
 
-        self.signInCredentials = credentialsSubject
-            .map({ ($0.email, $0.password) }).eraseToAnyPublisher()
-        self.signUpCredentials = credentialsSubject.eraseToAnyPublisher()
-
-        self.validatedSignInCredentials = signInCredentials
+        let validatedSignInCredentials = credentialsSubject
+            .map({ ($0.email, $0.password) })
             .map({ !$0.isEmpty && !$1.isEmpty && $1.count > 4 })
             .eraseToAnyPublisher()
-        self.validatedSignUpCredentials = signUpCredentials
+        let validatedSignUpCredentials = credentialsSubject
             .map({ !$0.name.isEmpty && !$0.email.isEmpty && !$0.password.isEmpty && $0.password.count > 4 && $0.name.count > 4 })
             .eraseToAnyPublisher()
 
@@ -66,12 +62,13 @@ public class OnboardingViewModel {
             .sink { [unowned self] in self.credentialsSubject.send($0) }
             .store(in: &subscriptions)
 
-        self.onboardingModeSubject.combineLatest(validatedSignInCredentials, validatedSignUpCredentials) { mode, a, b in
-            switch mode {
-            case Mode.signIn.rawValue: return a
-            case Mode.signUp.rawValue: return b
-            default: return false }
-        }.subscribe(isButtonEnabledSubject).store(in: &subscriptions)
+        self.onboardingModeSubject
+            .combineLatest(validatedSignInCredentials, validatedSignUpCredentials) { mode, a, b in
+                switch mode {
+                case Mode.signIn.rawValue: return a
+                case Mode.signUp.rawValue: return b
+                default: return false } }
+            .subscribe(isButtonEnabledSubject).store(in: &subscriptions)
     }
 
     deinit { print("DEINIT: ", String(describing: self)) }
@@ -81,7 +78,7 @@ public class OnboardingViewModel {
         let newAccount = NewAccount(name: credentials.name, email: credentials.email, password: credentials.password)
         switch userSessionRepository.signUp(newAccount: newAccount) {
         case let .failure(error): print(#line, "Handle Error: ", error, #file)
-        case let .success(session): self.subscriptions.forEach({$0.cancel()}); self.subscriptions.removeAll(); self.signedInResponder.signedIn(to: session) }
+        case let .success(session): self.signedInResponder.signedIn(to: session) }
     }
 
     public func signIn() {
@@ -89,6 +86,6 @@ public class OnboardingViewModel {
         let credentials = (name: "", email: "johndoe@gmail.com", password: "password")
         switch userSessionRepository.signIn(email: credentials.email, password: credentials.password) {
         case let .failure(error): print(#line, "Handle Error: ", error, #file)
-        case let .success(session): self.subscriptions.forEach({$0.cancel()}); self.subscriptions.removeAll(); self.signedInResponder.signedIn(to: session) }
+        case let .success(session): self.signedInResponder.signedIn(to: session) }
     }
 }
