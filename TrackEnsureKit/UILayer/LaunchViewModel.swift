@@ -32,10 +32,8 @@ public class LaunchViewModel {
     deinit { print("DEINIT: ", String(describing: self)) }
 
     public func loadUserSession() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
-            switch self.userSessionRepository.readUserSession() {
-            case let .success(session): self.signedInResponder.signedIn(to: session)
-            case .failure: self.notSignedInResponder.notSignedIn() }
-        }
+        switch self.userSessionRepository.readUserSession() {
+        case let .success(session): self.signedInResponder.signedIn(to: session)
+        case .failure: self.notSignedInResponder.notSignedIn() }
     }
 }
