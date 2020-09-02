@@ -36,10 +36,6 @@ public class OnboardingViewModel {
 
     private let isButtonEnabledSubject = CurrentValueSubject<Bool, Never>(true)
     private let credentialsSubject = CurrentValueSubject<Credentials, Never>(("", "", ""))
-//    private let signInCredentials: AnyPublisher<SignInCredentials, Never>
-//    private let signUpCredentials: AnyPublisher<SignUpCredentials, Never>
-//    private let validatedSignInCredentials: AnyPublisher<Bool, Never>
-//    private let validatedSignUpCredentials: AnyPublisher<Bool, Never>
 
     private var subscriptions = Set<AnyCancellable>()
 
