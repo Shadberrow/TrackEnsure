@@ -92,13 +92,17 @@ public class SignedInAppDependencyContainer {
 
     public func makeRecordCreationViewController() -> RecordCreationViewController {
         let viewModel = makeRecordCreationViewModel()
-        return RecordCreationViewController(viewModel: viewModel)
+        let recordDetailViewController = makeRecordDetailViewController(viewModel: viewModel)
+        return RecordCreationViewController(viewModel: viewModel, recordDetailViewController: recordDetailViewController)
     }
 
     private func makeRecordCreationViewModel() -> RecordCreationViewModel {
         return RecordCreationViewModel()
     }
 
+    private func makeRecordDetailViewController(viewModel: RecordCreationViewModel) -> RecordDetailViewController {
+        return RecordDetailViewController(viewModel: viewModel)
+    }
 }
 
 extension SignedInAppDependencyContainer: SignedInViewControllerFactory { }
