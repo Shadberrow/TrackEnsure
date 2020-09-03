@@ -20,20 +20,23 @@ public class MainViewController: NiblessNavigationController {
     // Child View Controller
     let launchViewController: LaunchViewController
     var onboardingViewController: OnboardingViewController?
-//    var homeViewController: HomeViewController?
+    var signedInViewController: SignedInViewController?
 
     // Combine
     private var subscriptions = Set<AnyCancellable>()
 
     private let makeOnboardingViewController: () -> OnboardingViewController
+    private let makeSignedInViewController: (UserSession) -> SignedInViewController
 
     // MARK: - Methods
     public init(viewModel: MainViewModel,
                 launchViewController: LaunchViewController,
-                onboardingViewControllerFactory: @escaping () -> OnboardingViewController) {
+                onboardingViewControllerFactory: @escaping () -> OnboardingViewController,
+                signedInViewControllerFactory: @escaping (UserSession) -> SignedInViewController) {
         self.viewModel = viewModel
         self.launchViewController = launchViewController
         self.makeOnboardingViewController = onboardingViewControllerFactory
+        self.makeSignedInViewController = signedInViewControllerFactory
         super.init()
     }
 
@@ -49,39 +52,27 @@ public class MainViewController: NiblessNavigationController {
     }
 
     private func presentLaunching() {
-        addFullScreen(childViewController: launchViewController)
+        viewControllers = [launchViewController]
     }
 
     private func presentOnboarding() {
         let onboardingViewController = makeOnboardingViewController()
-        onboardingViewController.modalPresentationStyle = .fullScreen
-
-        present(onboardingViewController, animated: true)
-        
+        setViewControllers([onboardingViewController], animated: false)
         self.onboardingViewController = onboardingViewController
     }
 
     private func presentSignedIn(userSession: UserSession) {
-        remove(childViewController: launchViewController)
-        
-        let vc = UIViewController()
-        vc.view.backgroundColor = .orange
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true, completion: nil)
-
-        if onboardingViewController?.presentingViewController != nil {
+        let signedInViewController = makeSignedInViewController(userSession)
+        signedInViewController.modalPresentationStyle = .fullScreen
+        present(signedInViewController, animated: true) {
+            self.viewControllers = []
             self.onboardingViewController = nil
-            dismiss(animated: true)
         }
     }
 
     public override func viewDidLoad() {
         super.viewDidLoad()
         isNavigationBarHidden = true
-    }
-
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         observeViewModel()
     }
 

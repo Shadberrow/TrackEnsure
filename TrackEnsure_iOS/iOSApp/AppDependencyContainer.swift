@@ -9,7 +9,7 @@
 import UIKit
 import TrackEnsureKit
 
-public class TEAppDependencyContainer {
+public class AppDependencyContainer {
 
     // MARK: - Properties
 
@@ -26,7 +26,7 @@ public class TEAppDependencyContainer {
         }
 
         func makeUserSessionDataStore() -> UserSessionDataStore {
-            return FakeUserSessionDataStore(hasToken: false)
+            return FakeUserSessionDataStore(hasToken: true)
         }
 
         func makeAuthRemoteApi() -> AuthRemoteApi {
@@ -51,9 +51,14 @@ public class TEAppDependencyContainer {
             return self.makeOnboardingViewController()
         }
 
+        let signedInViewControllerFactory = { [unowned self] (userSession: UserSession) in
+            return self.makeSignedInViewController(session: userSession)
+        }
+
         return MainViewController(viewModel: sharedMainViewModel,
                                   launchViewController: launchViewController,
-                                  onboardingViewControllerFactory: onboardingViewControllerFactory)
+                                  onboardingViewControllerFactory: onboardingViewControllerFactory,
+                                  signedInViewControllerFactory: signedInViewControllerFactory)
     }
 
     // Launching
@@ -81,6 +86,14 @@ public class TEAppDependencyContainer {
 
     // Signed-in
 
+    public func makeSignedInViewController(session: UserSession) -> SignedInViewController {
+        let dependencyContainer = makeSignedInDependencyContainer(session: session)
+        return dependencyContainer.makeSignedInViewController()
+    }
+
+    public func makeSignedInDependencyContainer(session: UserSession) -> SignedInAppDependencyContainer {
+        return SignedInAppDependencyContainer(userSession: session, appDependencyContainer: self)
+    }
 }
 
-extension TEAppDependencyContainer: LaunchViewModelFactory, OnboardingViewModelFactory { }
+extension AppDependencyContainer: LaunchViewModelFactory, OnboardingViewModelFactory { }

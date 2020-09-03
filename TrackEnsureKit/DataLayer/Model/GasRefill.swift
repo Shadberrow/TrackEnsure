@@ -1,5 +1,5 @@
 //
-//  GasStation.swift
+//  GasRefill.swift
 //  TrackEnsure
 //
 //  Created by Yevhenii on 01.09.2020.
@@ -15,6 +15,7 @@ public struct GasRefill: Codable, Equatable {
     public let gas: Gas
     public let amount: Double
     public let price: Double
+    public let uuid: UUID = UUID()
 
     // MARK: - Methods
     public init(address: Location, gas: Gas, amount: Double, price: Double) {
