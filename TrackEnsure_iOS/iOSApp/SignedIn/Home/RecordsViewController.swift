@@ -12,12 +12,24 @@ import TrackEnsureUIKit
 public class RecordsViewController: NiblessViewController {
 
     // MARK: - Properties
+    let viewModel: RecordsViewModel
 
     // MARK: - Methods
+    public init(viewModel: RecordsViewModel) {
+        self.viewModel = viewModel
+        super.init()
+    }
+
+    public override func loadView() {
+        view = RecordsRootView(viewModel: viewModel, displayType: .normal)
+    }
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemOrange
+    }
+
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
     }
 
 }

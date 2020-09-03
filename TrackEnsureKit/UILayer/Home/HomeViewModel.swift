@@ -10,8 +10,16 @@ import Foundation
 
 public class HomeViewModel {
 
-    public init() {
-        
+    // MARK: - Properties
+    let createRecordResponder: CreateRecordResponder
+
+    // MARK: - Methods
+    public init(createRecordResponder: CreateRecordResponder) {
+        self.createRecordResponder = createRecordResponder
+    }
+
+    public func handleAddAction() {
+        createRecordResponder.goToRecordCreation()
     }
 
 }

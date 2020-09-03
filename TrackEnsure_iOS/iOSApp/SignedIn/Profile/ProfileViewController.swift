@@ -17,9 +17,13 @@ public class ProfileViewController: NiblessViewController {
 
 
     // MARK: - Methods
-    init(viewModel: ProfileViewModel) {
+    public init(viewModel: ProfileViewModel) {
         self.viewModel = viewModel
         super.init()
     }
 
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .blue
+    }
 }

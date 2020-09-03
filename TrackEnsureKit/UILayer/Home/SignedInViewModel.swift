@@ -8,7 +8,7 @@
 
 import Combine
 
-public class SignedInViewModel {
+public class SignedInViewModel: CreateRecordResponder {
 
     // MARK: - Properties
     public var viewPublisher: AnyPublisher<SignedInView, Never> { return viewSubject.eraseToAnyPublisher() }
@@ -19,12 +19,13 @@ public class SignedInViewModel {
 
     }
 
-    
-
     public func presentProfileScreen() {
-
+        viewSubject.send(.profile)
     }
 
+    public func goToRecordCreation() {
+        viewSubject.send(.addRecord)
+    }
 
 
 }

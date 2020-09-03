@@ -25,3 +25,16 @@ public struct GasRefill: Codable, Equatable {
         self.price = price
     }
 }
+
+
+public extension GasRefill {
+
+    static let record_01 = GasRefill(address: Location(latitude: -33.864308, longitude: 151.209146),
+                                     gas: Gas(provider: "", type: ""),
+                                     amount: 20, price: 20*25)
+
+    static let record_02 = GasRefill(address: Location(latitude: -33.864308, longitude: 151.209146),
+                                     gas: Gas(provider: "", type: ""),
+                                     amount: 20, price: 20*25)
+
+}

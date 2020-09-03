@@ -11,12 +11,23 @@ import TrackEnsureUIKit
 
 public class StatsViewController: NiblessViewController {
 
+
+
     // MARK: - Properties
+    let viewModel: RecordsViewModel
 
     // MARK: - Methods
+    public init(viewModel: RecordsViewModel) {
+        self.viewModel = viewModel
+        super.init()
+    }
+
+    public override func loadView() {
+        view = RecordsRootView(viewModel: viewModel, displayType: .grouped)
+    }
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBlue
+        
     }
 }

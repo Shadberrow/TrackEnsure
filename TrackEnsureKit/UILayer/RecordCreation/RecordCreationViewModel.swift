@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+public class RecordCreationViewModel {
+
+    // MARK: - Properties
+
+    // MARK: - Methods
+    public init() {
+        
+    }
+
+}

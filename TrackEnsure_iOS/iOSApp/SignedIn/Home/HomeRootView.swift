@@ -27,6 +27,9 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
     private var recordButton: UIButton!
     private var statsButton: UIButton!
 
+    private var footerContainerView: UIView!
+    private var actionButton: UIButton!
+
     private var pageIndicatorLeadingAnchor: NSLayoutConstraint!
 
     // Child View Controllers
@@ -57,11 +60,10 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
     }
 
     private func setupSubviews() {
-        backgroundColor = .secondarySystemBackground
+        backgroundColor = .systemBackground
 
         scrollView = UIScrollView()
-        scrollView.backgroundColor = .systemPurple
-//        scrollView.contentInsetAdjustmentBehavior = .never
+        scrollView.backgroundColor = .clear
         scrollView.isPagingEnabled = true
         scrollView.bounces = false
         scrollView.delegate = self
@@ -79,18 +81,20 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
 
         headerTitle = UILabel()
         headerTitle.text = "Home"
-        headerTitle.font = UIFont.preferredFont(forTextStyle: .title2)
+        headerTitle.font = UIFont.preferredFont(forTextStyle: .title1)
         headerTitle.textAlignment = .center
         headerTitle.textColor = .label
 
         recordButton = UIButton(type: .system)
         recordButton.setTitle("Records", for: .normal)
+        recordButton.backgroundColor = .tertiarySystemBackground
         recordButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         recordButton.tintColor = .label
 //        recordButton.addTarget(self, action: #selector(handleAciton), for: .touchUpInside)
 
         statsButton = UIButton(type: .system)
         statsButton.setTitle("Stats", for: .normal)
+        statsButton.backgroundColor = .tertiarySystemBackground
         statsButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         statsButton.tintColor = .label
 //        statsButton.addTarget(self, action: #selector(handleAciton), for: .touchUpInside)
@@ -98,6 +102,14 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
         segmentContainer = UIStackView(arrangedSubviews: [recordButton, statsButton])
         segmentContainer.axis = .horizontal
         segmentContainer.distribution = .fillEqually
+
+        footerContainerView = UIView()
+        footerContainerView.backgroundColor = .secondarySystemBackground
+
+        actionButton = UIButton(type: .system)
+        actionButton.setImage(UIImage(systemName: "square.and.pencil", withConfiguration: UIImage.SymbolConfiguration(textStyle: .title2)), for: .normal)
+        actionButton.tintColor = .label
+        actionButton.addTarget(self, action: #selector(handleAction), for: .touchUpInside)
     }
 
     private func constructHierarchy() {
@@ -107,6 +119,8 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
         headerContainer.addSubview(pageIndicator)
         addSubview(scrollView)
         scrollView.addSubview(contentView)
+        addSubview(footerContainerView)
+        footerContainerView.addSubview(actionButton)
     }
 
     private func activateConstraints() {
@@ -116,6 +130,8 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
         activateConstraintsHeaderTitle()
         activateConstraintsScrollView()
         activateConstraintsContentView()
+        activateConstraintsFooterView()
+        activateConstraintsActionButton()
     }
 
     private func activateConstraintsHeaderContainerView() {
@@ -123,7 +139,7 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
         let leading = headerContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor)
         let trailing = headerContainer.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         let top = headerContainer.topAnchor.constraint(equalTo: self.topAnchor)
-        let height = headerContainer.heightAnchor.constraint(equalToConstant: 30 + self.safeAreaInsets.top)
+        let height = headerContainer.heightAnchor.constraint(equalToConstant: 97 + (UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0))
         NSLayoutConstraint.activate([leading, trailing, top, height])
     }
 
@@ -145,7 +161,7 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
         let leading = segmentContainer.leadingAnchor.constraint(equalTo: headerContainer.leadingAnchor)
         let trailing = segmentContainer.trailingAnchor.constraint(equalTo: headerContainer.trailingAnchor)
         let bottom = segmentContainer.bottomAnchor.constraint(equalTo: pageIndicator.topAnchor)
-        let height = segmentContainer.heightAnchor.constraint(equalToConstant: 40)
+        let height = segmentContainer.heightAnchor.constraint(equalToConstant: 44)
         NSLayoutConstraint.activate([leading, trailing, bottom, height])
     }
 
@@ -153,8 +169,9 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
         headerTitle.translatesAutoresizingMaskIntoConstraints = false
         let leading = headerTitle.leadingAnchor.constraint(equalTo: headerContainer.leadingAnchor)
         let trailing = headerTitle.trailingAnchor.constraint(equalTo: headerContainer.trailingAnchor)
+        let top = headerTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: (UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0))
         let bottom = headerTitle.bottomAnchor.constraint(equalTo: segmentContainer.topAnchor)
-        NSLayoutConstraint.activate([leading, trailing, bottom])
+        NSLayoutConstraint.activate([leading, trailing, top, bottom])
     }
 
     private func activateConstraintsScrollView() {
@@ -162,7 +179,7 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
         let leading = scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor)
         let trailing = scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         let top = scrollView.topAnchor.constraint(equalTo: headerContainer.bottomAnchor)
-        let bottom = scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        let bottom = scrollView.bottomAnchor.constraint(equalTo: footerContainerView.topAnchor)
         NSLayoutConstraint.activate([leading, trailing, top, bottom])
     }
 
@@ -175,6 +192,28 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
         let centerY = contentView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor)
         let width = contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 2)
         NSLayoutConstraint.activate([top, bottom, leading, trailing, centerY, width])
+    }
+
+    private func activateConstraintsFooterView() {
+        footerContainerView.translatesAutoresizingMaskIntoConstraints = false
+        let leading = footerContainerView.leadingAnchor.constraint(equalTo: self.leadingAnchor)
+        let trailing = footerContainerView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        let bottom = footerContainerView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        let height = footerContainerView.heightAnchor.constraint(equalToConstant: 49 + (UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0))
+        NSLayoutConstraint.activate([leading, trailing, bottom, height])
+    }
+
+    private func activateConstraintsActionButton() {
+        actionButton.translatesAutoresizingMaskIntoConstraints = false
+        let width = actionButton.widthAnchor.constraint(equalToConstant: 45)
+        let height = actionButton.heightAnchor.constraint(equalTo: actionButton.widthAnchor)
+        let trailing = actionButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -8)
+        let top = actionButton.topAnchor.constraint(equalTo: footerContainerView.topAnchor, constant: 8)
+        NSLayoutConstraint.activate([width, height, trailing, top])
+    }
+
+    @objc private func handleAction() {
+        viewModel.handleAddAction()
     }
 
     // MARK: - Scroll View Delegate

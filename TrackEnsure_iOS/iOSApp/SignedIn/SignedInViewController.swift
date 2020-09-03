@@ -51,13 +51,23 @@ public class SignedInViewController: NiblessNavigationController {
     private func present(_ view: SignedInView) {
         switch view {
         case .home: presentHome()
-        case .profile: print(view)
-        case .addRecord: print(view) }
+        case .profile: presentProfile()
+        case .addRecord: presentRecordCreation() }
     }
 
     private func presentHome() {
-        let homeViewController = viewControllerFactory.makeHomeViewController()
-        addFullScreen(childViewController: homeViewController)
+        let viewController = viewControllerFactory.makeHomeViewController()
+        addFullScreen(childViewController: viewController)
+    }
+
+    private func presentRecordCreation() {
+        let viewController = viewControllerFactory.makeRecordCreationViewController()
+        present(viewController, animated: true, completion: nil)
+    }
+
+    private func presentProfile() {
+        let viewController = viewControllerFactory.makeProfileViewController()
+        present(viewController, animated: true, completion: nil)
     }
 
     public override func viewDidLoad() {
@@ -74,4 +84,6 @@ public class SignedInViewController: NiblessNavigationController {
 public protocol SignedInViewControllerFactory {
 
     func makeHomeViewController() -> HomeViewController
+    func makeProfileViewController() -> ProfileViewController
+    func makeRecordCreationViewController() -> RecordCreationViewController
 }

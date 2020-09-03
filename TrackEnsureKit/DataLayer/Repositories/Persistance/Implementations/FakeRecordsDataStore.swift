@@ -14,7 +14,7 @@ public class FakeRecordsDataStore: RecordsDataStore {
     public init() {}
 
     public func getAllRecords() -> Result<[GasRefill], Never> {
-        return undefined()
+        return .success([GasRefill.record_01, GasRefill.record_02])
     }
 
     public func saveRecord(record: GasRefill) -> Result<GasRefill, Error> {

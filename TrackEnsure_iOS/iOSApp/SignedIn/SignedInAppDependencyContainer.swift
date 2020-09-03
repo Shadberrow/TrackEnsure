@@ -17,11 +17,15 @@ public class SignedInAppDependencyContainer {
 
     // Context
     let userSession: UserSession
+    let signedInViewModel: SignedInViewModel
     let sharedRecordsDataStore: RecordsDataStore
 
     // MARK: - Methods
 
     public init(userSession: UserSession, appDependencyContainer: AppDependencyContainer) {
+        func makeSignedInViewModel() -> SignedInViewModel {
+            return SignedInViewModel()
+        }
 
         func makeRecordsDataStore() -> RecordsDataStore {
             return FakeRecordsDataStore()
@@ -30,22 +34,18 @@ public class SignedInAppDependencyContainer {
         self.userSession = userSession
         self.userSessionRepository = appDependencyContainer.sharedUserSessionRepository
 
+        self.signedInViewModel = makeSignedInViewModel()
         self.sharedRecordsDataStore = makeRecordsDataStore()
     }
 
     // Signed-in
 
     public func makeSignedInViewController() -> SignedInViewController {
-        let viewModel = makeSignedInViewModel()
         let profileViewController = makeProfileViewController()
-        return SignedInViewController(viewModel: viewModel,
+        return SignedInViewController(viewModel: signedInViewModel,
                                       userSession: userSession,
                                       profileViewController: profileViewController,
                                       signedInViewControllerFactory: self)
-    }
-
-    public func makeSignedInViewModel() -> SignedInViewModel {
-        return SignedInViewModel()
     }
 
     // Profile
@@ -71,15 +71,32 @@ public class SignedInAppDependencyContainer {
     }
 
     public func makeHomeViewModel() -> HomeViewModel {
-        return HomeViewModel()
+        return HomeViewModel(createRecordResponder: signedInViewModel)
     }
 
     public func makeStatsViewController() -> StatsViewController {
-        return StatsViewController()
+        let viewModel = makeRecordsViewModel()
+        return StatsViewController(viewModel: viewModel)
     }
 
     public func makeRecordsViewController() -> RecordsViewController {
-        return RecordsViewController()
+        let viewModel = makeRecordsViewModel()
+        return RecordsViewController(viewModel: viewModel)
+    }
+
+    public func makeRecordsViewModel() -> RecordsViewModel {
+        return RecordsViewModel(recordsDataStore: sharedRecordsDataStore)
+    }
+
+    // Record Creation
+
+    public func makeRecordCreationViewController() -> RecordCreationViewController {
+        let viewModel = makeRecordCreationViewModel()
+        return RecordCreationViewController(viewModel: viewModel)
+    }
+
+    private func makeRecordCreationViewModel() -> RecordCreationViewModel {
+        return RecordCreationViewModel()
     }
 
 }
