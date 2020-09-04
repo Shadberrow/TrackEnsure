@@ -32,8 +32,11 @@ public class HomeViewModel: SignOutResponder {
     }
 
     public func signOut() {
-        switch userSessionRepository.signOut(userSession: userSession) {
-        case let .failure(error): print(error)
-        case .success: notSignedInResponder.notSignedIn() }
+        userSessionRepository.signOut(userSession: userSession) { [unowned self] signOutResult in
+            switch signOutResult {
+            case let .failure(error): print(error)
+            case .success: self.notSignedInResponder.notSignedIn()
+            }
+        }
     }
 }

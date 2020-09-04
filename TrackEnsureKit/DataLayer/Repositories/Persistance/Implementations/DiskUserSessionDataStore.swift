@@ -20,24 +20,26 @@ public class DiskUserSessionDataStore: UserSessionDataStore {
     public init() {}
 
     // MARK: - Methods
-    public func readUserSession() -> Result<UserSession, Error> {
+    public func readUserSession(result: @escaping (Result<UserSession, Error>) -> Void) {
         guard let data = UserDefaults.standard.data(forKey: "App.UserSession") else {
-            return .failure(DiskUserSessionDataStoreError.notSignedIn)
+            return result(.failure(DiskUserSessionDataStoreError.notSignedIn))
         }
         guard let session = try? JSONDecoder().decode(UserSession.self, from: data) else {
-            return .failure(DiskUserSessionDataStoreError.decoderFailed)
+            return result(.failure(DiskUserSessionDataStoreError.decoderFailed))
         }
-        return .success(session)
+        result(.success(session))
     }
 
-    public func save(userSession: UserSession) -> Result<UserSession, Error> {
-        guard let data = try? JSONEncoder().encode(userSession) else { return .failure(DiskUserSessionDataStoreError.encoderFailed) }
+    public func save(userSession: UserSession, result: @escaping (Result<UserSession, Error>) -> Void) {
+        guard let data = try? JSONEncoder().encode(userSession) else {
+            return result(.failure(DiskUserSessionDataStoreError.encoderFailed))
+        }
         UserDefaults.standard.set(data, forKey: "App.UserSession")
-        return .success(userSession)
+        result(.success(userSession))
     }
 
-    public func delete(userSession: UserSession) -> Result<UserSession, Error> {
+    public func delete(userSession: UserSession, result: @escaping (Result<UserSession, Error>) -> Void) {
         UserDefaults.standard.set(nil, forKey: "App.UserSession")
-        return .success(userSession)
+        result(.success(userSession))
     }
 }

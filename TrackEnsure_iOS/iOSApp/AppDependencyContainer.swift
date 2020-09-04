@@ -31,7 +31,8 @@ public class AppDependencyContainer {
         }
 
         func makeAuthRemoteApi() -> AuthRemoteApi {
-            return FakeAuthRemoteApi()
+//            return FakeAuthRemoteApi()
+            return FirebaseAuthRemoteApi()
         }
 
         func makeMainViewModel() -> MainViewModel {

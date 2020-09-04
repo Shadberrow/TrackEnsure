@@ -23,23 +23,29 @@ public class TEUserSessionRepository: UserSessionRepository {
     }
 
     // MARK: - UserSessionRepository Implementation
-    public func readUserSession() -> Result<UserSession, Error> {
-        return dataStore.readUserSession()
+    public func readUserSession(result: @escaping (Result<UserSession, Error>) -> Void) {
+        return dataStore.readUserSession(result: result)
     }
 
-    public func signIn(email: String, password: String) -> Result<UserSession, Error> {
-        switch remoteApi.signIn(email: email, password: password) {
-        case let .success(session): return dataStore.save(userSession: session)
-        case let .failure(error): return .failure(error) }
+    public func signIn(email: String, password: String, result: @escaping (Result<UserSession, Error>) -> Void) {
+        remoteApi.signIn(email: email, password: password) { signInResult in
+            switch signInResult {
+            case let .success(session): return self.dataStore.save(userSession: session, result: result)
+            case let .failure(error): return result(.failure(error))
+            }
+        }
     }
 
-    public func signUp(newAccount: NewAccount) -> Result<UserSession, Error> {
-        switch remoteApi.signUp(account: newAccount) {
-        case let .success(session): return dataStore.save(userSession: session)
-        case let .failure(error): return .failure(error) }
+    public func signUp(newAccount: NewAccount, result: @escaping (Result<UserSession, Error>) -> Void) {
+        remoteApi.signUp(account: newAccount) { signUpResult in
+            switch signUpResult {
+            case let .success(session): return self.dataStore.save(userSession: session, result: result)
+            case let .failure(error): return result(.failure(error))
+            }
+        }
     }
 
-    public func signOut(userSession: UserSession) -> Result<UserSession, Error> {
-        return dataStore.delete(userSession: userSession)
+    public func signOut(userSession: UserSession, result: @escaping (Result<UserSession, Error>) -> Void) {
+        return dataStore.delete(userSession: userSession, result: result)
     }
 }

@@ -71,17 +71,22 @@ public class OnboardingViewModel {
     public func signUp() {
         let credentials = credentialsSubject.value
         let newAccount = NewAccount(name: credentials.name, email: credentials.email, password: credentials.password)
-        switch userSessionRepository.signUp(newAccount: newAccount) {
-        case let .failure(error): print(#line, "Handle Error: ", error, #file)
-        case let .success(session): self.signedInResponder.signedIn(to: session) }
+        userSessionRepository.signUp(newAccount: newAccount) { [unowned self] result in
+            switch result {
+            case let .failure(error): print(#line, "Handle Error: ", error, #file)
+            case let .success(session): self.signedInResponder.signedIn(to: session)
+            }
+        }
     }
 
     public func signIn() {
         let credentials = credentialsSubject.value
-//        let credentials = (name: "", email: "johndoe@gmail.com", password: "password")
-        switch userSessionRepository.signIn(email: credentials.email, password: credentials.password) {
-        case let .failure(error): print(#line, "Handle Error: ", error, #file)
-        case let .success(session): self.signedInResponder.signedIn(to: session) }
+        userSessionRepository.signIn(email: credentials.email, password: credentials.password)  { [unowned self] result in
+            switch result {
+            case let .failure(error): print(#line, "Handle Error: ", error, #file)
+            case let .success(session): self.signedInResponder.signedIn(to: session)
+            }
+        }
     }
 
     public func beginEditing() {

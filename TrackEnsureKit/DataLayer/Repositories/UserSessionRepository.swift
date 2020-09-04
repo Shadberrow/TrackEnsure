@@ -11,8 +11,8 @@ import Combine
 
 public protocol UserSessionRepository {
     
-    func readUserSession() -> Result<UserSession, Error>
-    func signIn(email: String, password: String) -> Result<UserSession, Error>
-    func signUp(newAccount: NewAccount) -> Result<UserSession, Error>
-    func signOut(userSession: UserSession) -> Result<UserSession, Error>
+    func readUserSession(result: @escaping (Result<UserSession, Error>) -> Void)
+    func signIn(email: String, password: String, result: @escaping (Result<UserSession, Error>) -> Void)
+    func signUp(newAccount: NewAccount, result: @escaping (Result<UserSession, Error>) -> Void)
+    func signOut(userSession: UserSession, result: @escaping (Result<UserSession, Error>) -> Void)
 }

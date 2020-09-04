@@ -15,6 +15,6 @@ public enum AuthRemoteApiError: Error {
 
 public protocol AuthRemoteApi {
     
-    func signIn(email: String, password: String) -> Result<UserSession, Error>
-    func signUp(account: NewAccount) -> Result<UserSession, Error>
+    func signIn(email: String, password: String, result: @escaping (Result<UserSession, Error>) -> Void)
+    func signUp(account: NewAccount, result: @escaping (Result<UserSession, Error>) -> Void)
 }

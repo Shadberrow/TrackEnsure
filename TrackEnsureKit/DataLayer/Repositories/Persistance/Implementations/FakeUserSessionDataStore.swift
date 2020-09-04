@@ -19,31 +19,31 @@ public class FakeUserSessionDataStore: UserSessionDataStore {
         self.hasToken = hasToken
     }
 
-    public func readUserSession() -> Result<UserSession, Error> {
-        return hasToken ? runHasToken() : runDoesNotHaveToken()
+    public func readUserSession(result: @escaping (Result<UserSession, Error>) -> Void) {
+        hasToken ? runHasToken(result: result) : runDoesNotHaveToken(result: result)
     }
 
-    public func save(userSession: UserSession) -> Result<UserSession, Error> {
-        return .success(userSession)
+    public func save(userSession: UserSession, result: @escaping (Result<UserSession, Error>) -> Void) {
+        result(.success(userSession))
     }
 
-    public func delete(userSession: UserSession) -> Result<UserSession, Error> {
-        return .success(userSession)
+    public func delete(userSession: UserSession, result: @escaping (Result<UserSession, Error>) -> Void) {
+        result(.success(userSession))
     }
 
-    private func runHasToken() -> Result<UserSession, Error> {
+    private func runHasToken(result: @escaping (Result<UserSession, Error>) -> Void) {
         print("Try to read user session from fake disk ...")
         print("  simulating having user session with token fak3_r3m0t3_t0k3n ...")
         print("  returning user session with token fak3_r3m0t3_t0k3n ...")
         let profile = UserProfile(name: "John Doe", email: "johndoe@gmail.com")
         let remoteSession = RemoteUserSession(token: "fak3_r3m0t3_t0k3n")
-        return .success(UserSession(profile: profile, remoteSession: remoteSession))
+        return result(.success(UserSession(profile: profile, remoteSession: remoteSession)))
     }
 
-    private func runDoesNotHaveToken() -> Result<UserSession, Error> {
+    private func runDoesNotHaveToken(result: @escaping (Result<UserSession, Error>) -> Void) {
         print("Try to read user session from fake disk ...")
         print("  simulating empty disk ...")
         print("  returning nil ...")
-        return .failure(DataStoreError.invalidToken)
+        return result(.failure(DataStoreError.invalidToken))
     }
 }

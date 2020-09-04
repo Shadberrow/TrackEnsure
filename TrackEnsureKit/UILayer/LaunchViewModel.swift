@@ -32,8 +32,11 @@ public class LaunchViewModel {
     deinit { print("DEINIT: ", String(describing: self)) }
 
     public func loadUserSession() {
-        switch self.userSessionRepository.readUserSession() {
-        case let .success(session): self.signedInResponder.signedIn(to: session)
-        case .failure: self.notSignedInResponder.notSignedIn() }
+        userSessionRepository.readUserSession() { [unowned self] sessionResult in
+            switch sessionResult {
+            case let .success(session): self.signedInResponder.signedIn(to: session)
+            case .failure: self.notSignedInResponder.notSignedIn()
+            }
+        }
     }
 }

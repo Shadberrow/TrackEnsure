@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import Firebase
 
 public class MainViewModel: SignedInResponder, NotSignedInResponder {
 
@@ -16,7 +17,9 @@ public class MainViewModel: SignedInResponder, NotSignedInResponder {
     private let viewSubject = CurrentValueSubject<MainView, Never>(.launching)
 
     // MARK: - Methods
-    public init() {}
+    public init() {
+        FirebaseApp.configure()
+    }
 
     // MARK: - SignedInResponder Implementation
     public func signedIn(to userSession: UserSession) {
