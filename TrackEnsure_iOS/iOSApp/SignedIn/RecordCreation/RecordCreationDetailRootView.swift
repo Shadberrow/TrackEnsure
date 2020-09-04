@@ -19,9 +19,19 @@ class RecordCreationDetailRootView: NiblessView {
 
     // Subviews
     private var locationAddress: UILabel!
+    private var supplierField: UITextField!
+    private var typeField: UITextField!
+    private var quantityField: UITextField!
+    private var priceField: UITextField!
+    private var inputStack: UIStackView!
     private var actionButton: UIButton!
 
     private var hierarchyNotReady: Bool = true
+    private var isExpanded: Bool = false
+
+    // Constraints
+    private var actionButtonTopAnchor_initial: NSLayoutConstraint!
+    private var actionButtonTopAnchor_expanded: NSLayoutConstraint!
 
     // Combine
     private var subscriptions = Set<AnyCancellable>()
@@ -51,7 +61,44 @@ class RecordCreationDetailRootView: NiblessView {
     private func setupSubviews() {
         locationAddress = UILabel()
         locationAddress.textColor = .label
-        locationAddress.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        locationAddress.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+
+        supplierField = UITextField()
+        supplierField.placeholder = "Supplier"
+        supplierField.autocorrectionType = .no
+        supplierField.autocapitalizationType = .words
+
+        typeField = UITextField()
+        typeField.placeholder = "Type"
+        typeField.autocorrectionType = .no
+        typeField.autocapitalizationType = .words
+
+        quantityField = UITextField()
+        quantityField.placeholder = "Quantity"
+        quantityField.keyboardType = .numberPad
+
+        priceField = UITextField()
+        priceField.placeholder = "Price"
+        priceField.keyboardType = .numberPad
+
+        let fields = [supplierField, typeField, quantityField, priceField].compactMap { $0 }
+
+        fields.forEach { field in
+            field.textColor = .label
+            field.backgroundColor = .secondarySystemBackground
+            let view = UIView()
+            view.widthAnchor.constraint(equalToConstant: 20).isActive = true
+            field.leftView = view
+            field.leftViewMode = .always
+            field.layer.cornerRadius = 8
+            field.addTarget(self, action: #selector(handleTextChanged), for: .editingChanged)
+        }
+
+        inputStack = UIStackView(arrangedSubviews: fields)
+        inputStack.axis = .vertical
+        inputStack.distribution = .fillEqually
+        inputStack.spacing = 8
+        inputStack.alpha = 0
 
         actionButton = UIButton(type: .system)
         actionButton.setTitle("Next", for: .normal)
@@ -65,11 +112,13 @@ class RecordCreationDetailRootView: NiblessView {
     private func constructHierarchy() {
         addSubview(locationAddress)
         addSubview(actionButton)
+        addSubview(inputStack)
     }
 
     private func activateConstraints() {
         activateConstraintsLocationAddress()
         activateConstraintsActionButton()
+        activateConstraintsInputStack()
     }
 
     private func activateConstraintsLocationAddress() {
@@ -81,18 +130,54 @@ class RecordCreationDetailRootView: NiblessView {
 
     private func activateConstraintsActionButton() {
         actionButton.translatesAutoresizingMaskIntoConstraints = false
-        let top = actionButton.topAnchor.constraint(equalTo: locationAddress.bottomAnchor, constant: 12)
+        actionButtonTopAnchor_initial = actionButton.topAnchor.constraint(equalTo: locationAddress.bottomAnchor, constant: 12)
+        actionButtonTopAnchor_expanded = actionButton.topAnchor.constraint(equalTo: inputStack.bottomAnchor, constant: 12)
         let height = actionButton.heightAnchor.constraint(equalToConstant: 44)
         let width = actionButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7)
         let centerX = actionButton.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-        NSLayoutConstraint.activate([top, height, width, centerX])
+        NSLayoutConstraint.activate([actionButtonTopAnchor_initial, height, width, centerX])
+    }
+
+    private func activateConstraintsInputStack() {
+        inputStack.translatesAutoresizingMaskIntoConstraints = false
+        let top = inputStack.topAnchor.constraint(equalTo: locationAddress.bottomAnchor, constant: 8)
+        let leading = inputStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12)
+        let trailing = inputStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12)
+        let height = inputStack.heightAnchor.constraint(equalToConstant: (45 * 4) + (8 * 3)) // 4 fields with 45p height and 3 spaces between with 8p
+        NSLayoutConstraint.activate([top, leading, height, trailing])
     }
 
     private func combineViewModel() {
         viewModel.addressLabel.assign(to: \.text, on: locationAddress).store(in: &subscriptions)
     }
 
+    private func showInputStackAnimated() {
+        actionButtonTopAnchor_initial.isActive = false
+        actionButtonTopAnchor_expanded.isActive = true
+        supplierField.becomeFirstResponder()
+        UIView.animate(withDuration: 0.5, delay: 0.2, options: [.curveEaseIn], animations: {
+            self.inputStack.alpha = 1
+            self.layoutIfNeeded()
+        })
+    }
+
     @objc private func handleAciton() {
-        viewModel.expandDetailView()
+        if isExpanded {
+            viewModel.finishRecordCreation()
+        } else {
+            showInputStackAnimated()
+            viewModel.expandDetailView()
+            isExpanded = true
+        }
+    }
+
+    @objc private func handleTextChanged(_ sender: UITextField) {
+        guard let text = sender.text else { return }
+        switch sender {
+        case supplierField: viewModel.supplierSubject.send(text)
+        case typeField: viewModel.typeSubject.send(text)
+        case quantityField: viewModel.amountSubject.send(text)
+        case priceField: viewModel.priceSubject.send(text)
+        default: return }
     }
 }

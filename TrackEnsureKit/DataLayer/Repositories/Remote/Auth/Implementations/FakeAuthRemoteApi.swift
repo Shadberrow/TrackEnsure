@@ -15,11 +15,8 @@ public struct FakeAuthRemoteApi: AuthRemoteApi {
     public init() {}
 
     public func signIn(email: String, password: String) -> Result<UserSession, Error> {
-        guard email == "johndoe@gmail.com" && password == "password" else {
-            return .failure(AuthRemoteApiError.unknown)
-        }
-
-        let profile = UserProfile(name: "John Doe", email: "johndoe@gmail.com")
+        let profile = email == "johndoe@gmail.com" && password == "password" ?
+            UserProfile(name: "John Doe", email: email) : UserProfile(name: "[R] "+email, email: email)
         let remoteUserSession = RemoteUserSession(token: "j0hnd03_signed_in")
         let userSession = UserSession(profile: profile, remoteSession: remoteUserSession)
         return .success(userSession)

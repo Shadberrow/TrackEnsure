@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		572B103B250197BA00F2B6CF /* RealmRecordsDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572B103A250197BA00F2B6CF /* RealmRecordsDataStore.swift */; };
 		572E7EA924FFDB8F00612161 /* UIViewControllerContainment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7EA824FFDB8F00612161 /* UIViewControllerContainment.swift */; };
 		572E7EAB24FFE9DF00612161 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7EAA24FFE9DF00612161 /* HomeViewController.swift */; };
 		572E7EAD24FFE9EE00612161 /* HomeRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7EAC24FFE9EE00612161 /* HomeRootView.swift */; };
@@ -31,6 +32,7 @@
 		576FAAED25012E7E00EC1614 /* RecordCreationMapRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FAAEC25012E7E00EC1614 /* RecordCreationMapRootView.swift */; };
 		576FAAEF25015C4500EC1614 /* RecordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FAAEE25015C4500EC1614 /* RecordDetailViewController.swift */; };
 		576FAAF1250161F800EC1614 /* RecordCreationDetailRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FAAF0250161F800EC1614 /* RecordCreationDetailRootView.swift */; };
+		57732A7B2501A4FE0022CBE4 /* DiskUserSessionDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57732A7A2501A4FE0022CBE4 /* DiskUserSessionDataStore.swift */; };
 		578CD8DA24FEA50E00971069 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD8D924FEA50E00971069 /* AppDelegate.swift */; };
 		578CD8E324FEA51200971069 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 578CD8E224FEA51200971069 /* Assets.xcassets */; };
 		578CD8E624FEA51200971069 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 578CD8E424FEA51200971069 /* LaunchScreen.storyboard */; };
@@ -78,6 +80,10 @@
 		578CD98C24FEEA0D00971069 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD98B24FEEA0D00971069 /* OnboardingViewModel.swift */; };
 		578CD99024FEF56D00971069 /* LaunchRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD98F24FEF56D00971069 /* LaunchRootView.swift */; };
 		578CD99324FF6CF200971069 /* OnboardingRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD99124FF6BA400971069 /* OnboardingRootView.swift */; };
+		57BFA4C225019BE700767B67 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 57BFA4C125019BE700767B67 /* Realm */; };
+		57BFA4C425019BE700767B67 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 57BFA4C325019BE700767B67 /* RealmSwift */; };
+		57BFA4C725019D2F00767B67 /* RealmGasRefill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BFA4C625019D2F00767B67 /* RealmGasRefill.swift */; };
+		57EB1E68250242270008F0D1 /* SignOutResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EB1E67250242270008F0D1 /* SignOutResponder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +163,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		572B103A250197BA00F2B6CF /* RealmRecordsDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRecordsDataStore.swift; sourceTree = "<group>"; };
 		572E7EA824FFDB8F00612161 /* UIViewControllerContainment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerContainment.swift; sourceTree = "<group>"; };
 		572E7EAA24FFE9DF00612161 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		572E7EAC24FFE9EE00612161 /* HomeRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRootView.swift; sourceTree = "<group>"; };
@@ -181,6 +188,7 @@
 		576FAAEC25012E7E00EC1614 /* RecordCreationMapRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCreationMapRootView.swift; sourceTree = "<group>"; };
 		576FAAEE25015C4500EC1614 /* RecordDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailViewController.swift; sourceTree = "<group>"; };
 		576FAAF0250161F800EC1614 /* RecordCreationDetailRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCreationDetailRootView.swift; sourceTree = "<group>"; };
+		57732A7A2501A4FE0022CBE4 /* DiskUserSessionDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskUserSessionDataStore.swift; sourceTree = "<group>"; };
 		578CD8D624FEA50E00971069 /* TrackEnsure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrackEnsure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		578CD8D924FEA50E00971069 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		578CD8E224FEA51200971069 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -227,6 +235,8 @@
 		578CD98F24FEF56D00971069 /* LaunchRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchRootView.swift; sourceTree = "<group>"; };
 		578CD99124FF6BA400971069 /* OnboardingRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRootView.swift; sourceTree = "<group>"; };
 		578CD99524FF942200971069 /* TrackEnsure.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrackEnsure.entitlements; sourceTree = "<group>"; };
+		57BFA4C625019D2F00767B67 /* RealmGasRefill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGasRefill.swift; sourceTree = "<group>"; };
+		57EB1E67250242270008F0D1 /* SignOutResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutResponder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +254,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57BFA4C425019BE700767B67 /* RealmSwift in Frameworks */,
+				57BFA4C225019BE700767B67 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +374,7 @@
 				578CD91224FEA98A00971069 /* Location.swift */,
 				578CD8EF24FEA88600971069 /* GasRefill.swift */,
 				578CD91624FEAB1B00971069 /* Gas.swift */,
+				57BFA4C625019D2F00767B67 /* RealmGasRefill.swift */,
 				578CD96024FEBD1B00971069 /* UserSession.swift */,
 				578CD96224FEBD3900971069 /* UserProfile.swift */,
 				578CD96824FEC19B00971069 /* NewAccount.swift */,
@@ -461,6 +474,7 @@
 				578CD97B24FED3AF00971069 /* SignedInResponder.swift */,
 				578CD97D24FED3C400971069 /* NotSignedInResponder.swift */,
 				576FAAE42501296C00EC1614 /* CreateRecordResponder.swift */,
+				57EB1E67250242270008F0D1 /* SignOutResponder.swift */,
 				578CD98A24FEEA0000971069 /* Onboarding */,
 				576FAAE925012BF800EC1614 /* RecordCreation */,
 				572E7EAE24FFE9F800612161 /* Home */,
@@ -519,7 +533,9 @@
 			isa = PBXGroup;
 			children = (
 				578CD97524FEC93900971069 /* FakeUserSessionDataStore.swift */,
+				57732A7A2501A4FE0022CBE4 /* DiskUserSessionDataStore.swift */,
 				572E7EC72500DF8100612161 /* FakeRecordsDataStore.swift */,
+				57BFA4C525019CEF00767B67 /* Realm */,
 			);
 			path = Implementations;
 			sourceTree = "<group>";
@@ -574,6 +590,14 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		57BFA4C525019CEF00767B67 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				572B103A250197BA00F2B6CF /* RealmRecordsDataStore.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -621,6 +645,8 @@
 				578CD94424FEB16400971069 /* PBXTargetDependency */,
 			);
 			name = TrackEnsure;
+			packageProductDependencies = (
+			);
 			productName = TrackEnsure;
 			productReference = 578CD8D624FEA50E00971069 /* TrackEnsure.app */;
 			productType = "com.apple.product-type.application";
@@ -639,6 +665,10 @@
 			dependencies = (
 			);
 			name = TrackEnsureKit;
+			packageProductDependencies = (
+				57BFA4C125019BE700767B67 /* Realm */,
+				57BFA4C325019BE700767B67 /* RealmSwift */,
+			);
 			productName = TrackEnsureKit;
 			productReference = 578CD90424FEA94800971069 /* TrackEnsureKit.framework */;
 			productType = "com.apple.product-type.framework";
@@ -719,6 +749,9 @@
 				Base,
 			);
 			mainGroup = 578CD8CD24FEA50E00971069;
+			packageReferences = (
+				57BFA4BC25019BC300767B67 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
 			productRefGroup = 578CD8D724FEA50E00971069 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -780,6 +813,7 @@
 			files = (
 				578CD97624FEC93900971069 /* FakeUserSessionDataStore.swift in Sources */,
 				572E7EB224FFEA1300612161 /* HomeViewModel.swift in Sources */,
+				572B103B250197BA00F2B6CF /* RealmRecordsDataStore.swift in Sources */,
 				578CD96924FEC19B00971069 /* NewAccount.swift in Sources */,
 				576FAADD25010A0E00EC1614 /* RecordsViewModel.swift in Sources */,
 				576FAAE52501296C00EC1614 /* CreateRecordResponder.swift in Sources */,
@@ -788,6 +822,7 @@
 				578CD92F24FEAF5D00971069 /* Undefined.swift in Sources */,
 				576FAAEB25012C0C00EC1614 /* RecordCreationViewModel.swift in Sources */,
 				572E7EC42500DC3400612161 /* RecordsDataStore.swift in Sources */,
+				57EB1E68250242270008F0D1 /* SignOutResponder.swift in Sources */,
 				578CD97E24FED3C400971069 /* NotSignedInResponder.swift in Sources */,
 				578CD98224FED86B00971069 /* LaunchViewModel.swift in Sources */,
 				578CD96124FEBD1B00971069 /* UserSession.swift in Sources */,
@@ -802,12 +837,14 @@
 				578CD96F24FEC36400971069 /* FakeAuthRemoteApi.swift in Sources */,
 				578CD97824FECCE000971069 /* TEUserSessionRepository.swift in Sources */,
 				572E7EB024FFEA0A00612161 /* HomeView.swift in Sources */,
+				57BFA4C725019D2F00767B67 /* RealmGasRefill.swift in Sources */,
 				578CD98C24FEEA0D00971069 /* OnboardingViewModel.swift in Sources */,
 				572E7EB825000BDE00612161 /* SignedInViewModel.swift in Sources */,
 				578CD91324FEA98A00971069 /* Location.swift in Sources */,
 				578CD91724FEAB1B00971069 /* Gas.swift in Sources */,
 				578CD97C24FED3AF00971069 /* SignedInResponder.swift in Sources */,
 				578CD97324FEC77F00971069 /* UserSessionDataStore.swift in Sources */,
+				57732A7B2501A4FE0022CBE4 /* DiskUserSessionDataStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1279,6 +1316,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		57BFA4BC25019BC300767B67 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.3.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		57BFA4C125019BE700767B67 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 57BFA4BC25019BC300767B67 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		57BFA4C325019BE700767B67 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 57BFA4BC25019BC300767B67 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 578CD8CE24FEA50E00971069 /* Project object */;
 }

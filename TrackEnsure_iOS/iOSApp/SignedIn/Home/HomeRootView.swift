@@ -28,7 +28,8 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
     private var statsButton: UIButton!
 
     private var footerContainerView: UIView!
-    private var actionButton: UIButton!
+    private var actionAddButton: UIButton!
+    private var actionSignOutButton: UIButton!
 
     private var pageIndicatorLeadingAnchor: NSLayoutConstraint!
 
@@ -77,11 +78,12 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
         headerContainer.backgroundColor = .secondarySystemBackground
 
         pageIndicator = UIView()
-        pageIndicator.backgroundColor = .separator
+        pageIndicator.backgroundColor = .black
+        pageIndicator.layer.cornerRadius = 2
 
         headerTitle = UILabel()
         headerTitle.text = "Home"
-        headerTitle.font = UIFont.preferredFont(forTextStyle: .title1)
+        headerTitle.font = UIFont.systemFont(ofSize: 23, weight: .heavy)
         headerTitle.textAlignment = .center
         headerTitle.textColor = .label
 
@@ -90,14 +92,14 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
         recordButton.backgroundColor = .tertiarySystemBackground
         recordButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         recordButton.tintColor = .label
-//        recordButton.addTarget(self, action: #selector(handleAciton), for: .touchUpInside)
+        recordButton.addTarget(self, action: #selector(handleAciton), for: .touchUpInside)
 
         statsButton = UIButton(type: .system)
         statsButton.setTitle("Stats", for: .normal)
         statsButton.backgroundColor = .tertiarySystemBackground
         statsButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         statsButton.tintColor = .label
-//        statsButton.addTarget(self, action: #selector(handleAciton), for: .touchUpInside)
+        statsButton.addTarget(self, action: #selector(handleAciton), for: .touchUpInside)
 
         segmentContainer = UIStackView(arrangedSubviews: [recordButton, statsButton])
         segmentContainer.axis = .horizontal
@@ -106,10 +108,15 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
         footerContainerView = UIView()
         footerContainerView.backgroundColor = .secondarySystemBackground
 
-        actionButton = UIButton(type: .system)
-        actionButton.setImage(UIImage(systemName: "square.and.pencil", withConfiguration: UIImage.SymbolConfiguration(textStyle: .title2)), for: .normal)
-        actionButton.tintColor = .label
-        actionButton.addTarget(self, action: #selector(handleAction), for: .touchUpInside)
+        actionAddButton = UIButton(type: .system)
+        actionAddButton.setImage(UIImage(systemName: "square.and.pencil", withConfiguration: UIImage.SymbolConfiguration(textStyle: .title2)), for: .normal)
+        actionAddButton.tintColor = .label
+        actionAddButton.addTarget(self, action: #selector(handleAddAction), for: .touchUpInside)
+
+        actionSignOutButton = UIButton(type: .system)
+        actionSignOutButton.setImage(UIImage(systemName: "arrowshape.turn.up.left.2", withConfiguration: UIImage.SymbolConfiguration(textStyle: .title2)), for: .normal)
+        actionSignOutButton.tintColor = .label
+        actionSignOutButton.addTarget(self, action: #selector(handleActionSignOut), for: .touchUpInside)
     }
 
     private func constructHierarchy() {
@@ -120,7 +127,8 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         addSubview(footerContainerView)
-        footerContainerView.addSubview(actionButton)
+        footerContainerView.addSubview(actionAddButton)
+        footerContainerView.addSubview(actionSignOutButton)
     }
 
     private func activateConstraints() {
@@ -131,7 +139,8 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
         activateConstraintsScrollView()
         activateConstraintsContentView()
         activateConstraintsFooterView()
-        activateConstraintsActionButton()
+        activateConstraintsactionAddButton()
+        activateConstraintsActionSignOutButton()
     }
 
     private func activateConstraintsHeaderContainerView() {
@@ -150,7 +159,7 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
         let trailing = pageIndicator.trailingAnchor.constraint(equalTo: headerContainer.trailingAnchor)
         trailing.priority = UILayoutPriority(150)
         let bottom = pageIndicator.bottomAnchor.constraint(equalTo: headerContainer.bottomAnchor)
-        let height = pageIndicator.heightAnchor.constraint(equalToConstant: 3)
+        let height = pageIndicator.heightAnchor.constraint(equalToConstant: 4)
         let width = pageIndicator.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5)
         width.priority = UILayoutPriority(170)
         NSLayoutConstraint.activate([pageIndicatorLeadingAnchor, trailing, bottom, height, width])
@@ -160,7 +169,7 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
         segmentContainer.translatesAutoresizingMaskIntoConstraints = false
         let leading = segmentContainer.leadingAnchor.constraint(equalTo: headerContainer.leadingAnchor)
         let trailing = segmentContainer.trailingAnchor.constraint(equalTo: headerContainer.trailingAnchor)
-        let bottom = segmentContainer.bottomAnchor.constraint(equalTo: pageIndicator.topAnchor)
+        let bottom = segmentContainer.bottomAnchor.constraint(equalTo: headerContainer.bottomAnchor)
         let height = segmentContainer.heightAnchor.constraint(equalToConstant: 44)
         NSLayoutConstraint.activate([leading, trailing, bottom, height])
     }
@@ -203,17 +212,38 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
         NSLayoutConstraint.activate([leading, trailing, bottom, height])
     }
 
-    private func activateConstraintsActionButton() {
-        actionButton.translatesAutoresizingMaskIntoConstraints = false
-        let width = actionButton.widthAnchor.constraint(equalToConstant: 45)
-        let height = actionButton.heightAnchor.constraint(equalTo: actionButton.widthAnchor)
-        let trailing = actionButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -8)
-        let top = actionButton.topAnchor.constraint(equalTo: footerContainerView.topAnchor, constant: 8)
+    private func activateConstraintsactionAddButton() {
+        actionAddButton.translatesAutoresizingMaskIntoConstraints = false
+        let width = actionAddButton.widthAnchor.constraint(equalToConstant: 45)
+        let height = actionAddButton.heightAnchor.constraint(equalTo: actionAddButton.widthAnchor)
+        let trailing = actionAddButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -8)
+        let top = actionAddButton.topAnchor.constraint(equalTo: footerContainerView.topAnchor, constant: 8)
         NSLayoutConstraint.activate([width, height, trailing, top])
     }
 
-    @objc private func handleAction() {
+    private func activateConstraintsActionSignOutButton() {
+        actionSignOutButton.translatesAutoresizingMaskIntoConstraints = false
+        let width = actionSignOutButton.widthAnchor.constraint(equalToConstant: 45)
+        let height = actionSignOutButton.heightAnchor.constraint(equalTo: actionAddButton.widthAnchor)
+        let leading = actionSignOutButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 8)
+        let top = actionSignOutButton.topAnchor.constraint(equalTo: footerContainerView.topAnchor, constant: 8)
+        NSLayoutConstraint.activate([width, height, leading, top])
+    }
+
+    @objc private func handleAddAction() {
         viewModel.handleAddAction()
+    }
+
+    @objc private func handleActionSignOut() {
+        viewModel.signOut()
+    }
+
+    @objc private func handleAciton(_ sender: UIButton) {
+        if sender == recordButton {
+            scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        } else if sender == statsButton {
+            scrollView.setContentOffset(CGPoint(x: frame.width, y: 0), animated: true)
+        }
     }
 
     // MARK: - Scroll View Delegate

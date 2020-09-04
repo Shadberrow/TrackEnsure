@@ -28,11 +28,15 @@ public class TEUserSessionRepository: UserSessionRepository {
     }
 
     public func signIn(email: String, password: String) -> Result<UserSession, Error> {
-        return remoteApi.signIn(email: email, password: password)
+        switch remoteApi.signIn(email: email, password: password) {
+        case let .success(session): return dataStore.save(userSession: session)
+        case let .failure(error): return .failure(error) }
     }
 
     public func signUp(newAccount: NewAccount) -> Result<UserSession, Error> {
-        return remoteApi.signUp(account: newAccount)
+        switch remoteApi.signUp(account: newAccount) {
+        case let .success(session): return dataStore.save(userSession: session)
+        case let .failure(error): return .failure(error) }
     }
 
     public func signOut(userSession: UserSession) -> Result<UserSession, Error> {

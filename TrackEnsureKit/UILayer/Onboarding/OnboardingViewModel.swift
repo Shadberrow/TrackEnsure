@@ -31,6 +31,7 @@ public class OnboardingViewModel {
     public let emailSubject = CurrentValueSubject<String?, Never>(nil)
     public let passwordSubject = CurrentValueSubject<String?, Never>(nil)
     public let onboardingModeSubject = CurrentValueSubject<Int, Never>(0)
+    public let beginEditingSubject = PassthroughSubject<Void, Never>()
 
     private let isButtonEnabledSubject = CurrentValueSubject<Bool, Never>(true)
     private let credentialsSubject = CurrentValueSubject<Credentials, Never>(("", "", ""))
@@ -76,10 +77,14 @@ public class OnboardingViewModel {
     }
 
     public func signIn() {
-//        let credentials = credentialsSubject.value
-        let credentials = (name: "", email: "johndoe@gmail.com", password: "password")
+        let credentials = credentialsSubject.value
+//        let credentials = (name: "", email: "johndoe@gmail.com", password: "password")
         switch userSessionRepository.signIn(email: credentials.email, password: credentials.password) {
         case let .failure(error): print(#line, "Handle Error: ", error, #file)
         case let .success(session): self.signedInResponder.signedIn(to: session) }
+    }
+
+    public func beginEditing() {
+        beginEditingSubject.send(())
     }
 }

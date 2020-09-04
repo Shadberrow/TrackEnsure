@@ -62,6 +62,7 @@ public class SignedInViewController: NiblessNavigationController {
 
     private func presentRecordCreation() {
         let viewController = viewControllerFactory.makeRecordCreationViewController()
+        viewController.modalPresentationStyle = .fullScreen
         present(viewController, animated: true, completion: nil)
     }
 
@@ -73,6 +74,14 @@ public class SignedInViewController: NiblessNavigationController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         observeViewModel()
+    }
+
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
 
     private func observeViewModel() {

@@ -26,6 +26,6 @@ public class SignedInRootView: NiblessView {
     deinit { print("DEINIT: ", String(describing: self)) }
 
     private func styleView() {
-        backgroundColor = .systemTeal
+        backgroundColor = .systemBackground
     }
 }

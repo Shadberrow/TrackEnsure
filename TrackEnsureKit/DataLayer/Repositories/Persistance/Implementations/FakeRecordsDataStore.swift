@@ -17,11 +17,15 @@ public class FakeRecordsDataStore: RecordsDataStore {
         return .success([GasRefill.record_01, GasRefill.record_02])
     }
 
-    public func saveRecord(record: GasRefill) -> Result<GasRefill, Error> {
-        return undefined()
+    public func createRecord(record: GasRefill) -> Result<GasRefill, Error> {
+        undefined()
     }
 
-    public func getRecord(id: UUID) -> Result<GasRefill, Error> {
-        return undefined()
+    public func updateRecord(record: GasRefill) -> Result<GasRefill, Error> {
+        undefined()
+    }
+
+    public func deleteRecord(record: GasRefill) -> Result<Void, Error> {
+        undefined()
     }
 }

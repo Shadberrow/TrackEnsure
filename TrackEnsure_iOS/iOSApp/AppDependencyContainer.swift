@@ -26,7 +26,8 @@ public class AppDependencyContainer {
         }
 
         func makeUserSessionDataStore() -> UserSessionDataStore {
-            return FakeUserSessionDataStore(hasToken: true)
+//            return FakeUserSessionDataStore(hasToken: true)
+            return DiskUserSessionDataStore()
         }
 
         func makeAuthRemoteApi() -> AuthRemoteApi {

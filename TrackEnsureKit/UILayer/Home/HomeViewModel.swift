@@ -8,18 +8,32 @@
 
 import Foundation
 
-public class HomeViewModel {
+public class HomeViewModel: SignOutResponder {
 
     // MARK: - Properties
+    let userSession: UserSession
     let createRecordResponder: CreateRecordResponder
+    let notSignedInResponder: NotSignedInResponder
+    let userSessionRepository: UserSessionRepository
 
     // MARK: - Methods
-    public init(createRecordResponder: CreateRecordResponder) {
+    public init(userSession: UserSession,
+                createRecordResponder: CreateRecordResponder,
+                notSignedInResponder: NotSignedInResponder,
+                userSessionRepository: UserSessionRepository) {
+        self.userSession = userSession
         self.createRecordResponder = createRecordResponder
+        self.notSignedInResponder = notSignedInResponder
+        self.userSessionRepository = userSessionRepository
     }
 
     public func handleAddAction() {
         createRecordResponder.goToRecordCreation()
     }
 
+    public func signOut() {
+        switch userSessionRepository.signOut(userSession: userSession) {
+        case let .failure(error): print(error)
+        case .success: notSignedInResponder.notSignedIn() }
+    }
 }

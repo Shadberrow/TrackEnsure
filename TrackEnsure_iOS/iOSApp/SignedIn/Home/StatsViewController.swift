@@ -11,8 +11,6 @@ import TrackEnsureUIKit
 
 public class StatsViewController: NiblessViewController {
 
-
-
     // MARK: - Properties
     let viewModel: RecordsViewModel
 
@@ -28,6 +26,9 @@ public class StatsViewController: NiblessViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
 }

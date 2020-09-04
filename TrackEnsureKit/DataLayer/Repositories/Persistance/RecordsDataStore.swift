@@ -11,6 +11,7 @@ import Foundation
 public protocol RecordsDataStore {
 
     func getAllRecords() -> Result<[GasRefill], Never>
-    func saveRecord(record: GasRefill) -> Result<GasRefill, Error>
-    func getRecord(id: UUID) -> Result<GasRefill, Error>
+    func createRecord(record: GasRefill) -> Result<GasRefill, Error>
+    func updateRecord(record: GasRefill) -> Result<GasRefill, Error>
+    func deleteRecord(record: GasRefill) -> Result<Void, Error>
 }

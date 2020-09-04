@@ -37,12 +37,6 @@ public class RecordsRootView: NiblessView, UITableViewDelegate, UITableViewDataS
         self.viewModel = viewModel
         self.displayType = displayType
         super.init(frame: .zero)
-
-        viewModel.loadRecords()
-
-        viewModel.tableViewReloadSubject
-            .sink { [weak self] in self?.tableView.reloadData() }
-            .store(in: &subscriptions)
     }
 
     public override func didMoveToWindow() {
@@ -52,6 +46,10 @@ public class RecordsRootView: NiblessView, UITableViewDelegate, UITableViewDataS
         constructHierarchy()
         activateConstraints()
         hierarchyNotReady = false
+
+        viewModel.tableViewReloadSubject
+            .sink { [weak self] in self?.tableView.reloadData() }
+            .store(in: &subscriptions)
     }
 
     private func setupSubviews() {
@@ -81,7 +79,6 @@ public class RecordsRootView: NiblessView, UITableViewDelegate, UITableViewDataS
     }
 
     // MARK: - UITableView Delegate & Data Source
-
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.tableView(tableView, numberOfRowsInSection: section)
     }

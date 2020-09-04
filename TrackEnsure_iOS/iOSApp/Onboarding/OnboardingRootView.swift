@@ -80,7 +80,7 @@ public class OnboardingRootView: NiblessView, UITextFieldDelegate {
         nameField.autocorrectionType = .no
         nameField.autocapitalizationType = .words
         nameField.textColor = .label
-        nameField.backgroundColor = .tertiarySystemBackground
+        nameField.backgroundColor = .secondarySystemBackground
         nameField.leftView = nameIcon
         nameField.leftViewMode = .always
         nameField.returnKeyType = .next
@@ -95,20 +95,19 @@ public class OnboardingRootView: NiblessView, UITextFieldDelegate {
         emailField.autocapitalizationType = .none
         emailField.textColor = .label
         emailField.keyboardType = .emailAddress
-        emailField.backgroundColor = .tertiarySystemBackground
+        emailField.backgroundColor = .secondarySystemBackground
         emailField.leftView = emailIcon
         emailField.leftViewMode = .always
         emailField.returnKeyType = .next
         emailField.layer.cornerRadius = 8
         emailField.addTarget(self, action: #selector(handleEmailChanged), for: .editingChanged)
         emailField.delegate = self
-        emailField.becomeFirstResponder()
 
         passwordField = UITextField()
         passwordField.placeholder = "Password"
         passwordField.textColor = .label
         passwordField.isSecureTextEntry = true
-        passwordField.backgroundColor = .tertiarySystemBackground
+        passwordField.backgroundColor = .secondarySystemBackground
         passwordField.leftView = passwordIcon
         passwordField.leftViewMode = .always
         passwordField.returnKeyType = .done
@@ -123,7 +122,7 @@ public class OnboardingRootView: NiblessView, UITextFieldDelegate {
         actionButton = UIButton(type: .system)
         actionButton.setTitle("Sign Up", for: .normal)
         actionButton.titleLabel?.font = .boldSystemFont(ofSize: 18)
-        actionButton.backgroundColor = .tertiarySystemBackground
+        actionButton.backgroundColor = .secondarySystemBackground
         actionButton.layer.cornerRadius = 8
         actionButton.tintColor = .label
         actionButton.addTarget(self, action: #selector(handleAciton), for: .touchUpInside)
@@ -198,6 +197,7 @@ public class OnboardingRootView: NiblessView, UITextFieldDelegate {
 
     private func bindToViewModel() {
         viewModel.isButtonEnabled.assign(to: \.isEnabled, on: actionButton).store(in: &subscriptions)
+        viewModel.beginEditingSubject.sink { [weak self] in self?.beginEditing() }.store(in: &subscriptions)
     }
 
     private func handleKeyboardNotifications() {
@@ -214,6 +214,10 @@ public class OnboardingRootView: NiblessView, UITextFieldDelegate {
 
         _ = Publishers.Merge(keyboardWillOpen, keyboardWillHide)
             .subscribe(on: RunLoop.main).sink { [weak self] in self?.changeInputCenterYConstraint(offset: $0) }
+    }
+
+    public func beginEditing() {
+        emailField.becomeFirstResponder()
     }
 
     @objc private func handleNameChanged(_ sender: UITextField) {

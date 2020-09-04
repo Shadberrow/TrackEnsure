@@ -17,7 +17,7 @@ public class RecordsViewModel {
 
     public let tableViewReloadSubject = PassthroughSubject<Void, Never>()
 
-    
+
 
     var records: [GasRefill] = [] {
         didSet { tableViewReloadSubject.send(()) }
@@ -39,6 +39,29 @@ public class RecordsViewModel {
     }
 
     public func tableView(setupCell cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.textLabel?.text = records[indexPath.row].uuid.uuidString
+        let record = records[indexPath.row]
+        let title = NSAttributedString(string: record.addressString + "\n", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)])
+        let subtitle = NSAttributedString(string: record.gas.provider + " - \(record.amount) L - " + "\(record.price)", attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
+        let attributedString = NSMutableAttributedString()
+        attributedString.append(title)
+        attributedString.append(subtitle)
+        cell.textLabel?.attributedText = attributedString
+        cell.textLabel?.numberOfLines = 0
+    }
+}
+
+
+class RecordViewModel {
+
+    // MARK: - Properties
+    let attributedString: NSMutableAttributedString
+
+    // MARK: - Methods
+    init(record: GasRefill) {
+        let title = NSAttributedString(string: record.addressString + "\n", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)])
+        let subtitle = NSAttributedString(string: record.gas.provider + " - \(record.amount) L - " + "\(record.price)", attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
+        self.attributedString = NSMutableAttributedString()
+        self.attributedString.append(title)
+        self.attributedString.append(subtitle)
     }
 }

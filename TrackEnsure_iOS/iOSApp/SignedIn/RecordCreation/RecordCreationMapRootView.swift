@@ -141,7 +141,7 @@ public class RecordCreationMapRootView: NiblessView, MKMapViewDelegate, CLLocati
 
     private func activateConstraintsCloseButton() {
         closeButton.translatesAutoresizingMaskIntoConstraints = false
-        let top = closeButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 12)
+        let top = closeButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 0)
         let trailing = closeButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12)
         let width = closeButton.widthAnchor.constraint(equalToConstant: 50)
         let height = closeButton.heightAnchor.constraint(equalTo: closeButton.widthAnchor)
@@ -181,7 +181,11 @@ public class RecordCreationMapRootView: NiblessView, MKMapViewDelegate, CLLocati
             let streetNumber = placemark.subThoroughfare ?? ""
             let streetName = placemark.thoroughfare ?? ""
 
-            self.viewModel.addressSubject.send(streetNumber + " " + streetName)
+            var address: String
+            address = streetNumber.isEmpty ? streetName : (streetNumber + " " + streetName)
+            address = address.isEmpty ? "Move Pin" : address
+
+            self.viewModel.addressSubject.send(address)
             self.viewModel.locationSubject.send(Location(latitude: center.coordinate.latitude, longitude: center.coordinate.longitude))
         }
     }

@@ -44,11 +44,12 @@ public class RecordCreationViewController: NiblessNavigationController {
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presentRecordDetailViewController()
+
     }
 
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        presentRecordDetailViewController()
         childTopAnchor.constant = -view.bounds.maxY + 140
         animateLayoutSubviews()
     }
@@ -70,6 +71,8 @@ public class RecordCreationViewController: NiblessNavigationController {
         view.addConstraints(constraints)
 
         child.didMove(toParent: self)
+
+        view.layoutIfNeeded()
     }
 
     private func expandRecordDetailView() {

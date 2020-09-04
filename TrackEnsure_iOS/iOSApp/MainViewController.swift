@@ -56,6 +56,9 @@ public class MainViewController: NiblessNavigationController {
     }
 
     private func presentOnboarding() {
+        if self.onboardingViewController == nil {
+            dismiss(animated: true, completion: nil)
+        }
         let onboardingViewController = makeOnboardingViewController()
         setViewControllers([onboardingViewController], animated: false)
         self.onboardingViewController = onboardingViewController
