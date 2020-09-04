@@ -21,14 +21,11 @@ public class StatsViewController: NiblessViewController {
     }
 
     public override func loadView() {
-        view = RecordsRootView(viewModel: viewModel, displayType: .grouped)
+        view = RecordsRootView(viewModel: viewModel)
     }
 
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.loadRecords()
     }
 }

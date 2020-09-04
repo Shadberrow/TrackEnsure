@@ -20,7 +20,7 @@ internal class RealmGasRefill: Object {
     @objc dynamic var gasType: String = ""
     @objc dynamic var amount: Double = 0.0
     @objc dynamic var price: Double = 0.0
-    @objc dynamic var uuid: String = UUID().uuidString
+    @objc dynamic var uuid: String = ""
     @objc dynamic var userUUID: String?
 
     // MARK: - Methods

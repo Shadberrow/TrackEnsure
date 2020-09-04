@@ -31,7 +31,8 @@ public class RealmRecordsDataStore: RecordsDataStore {
                 address: Location(latitude: $0.latitude, longitude: $0.longitude),
                 addressString: $0.addressString,
                 gas: Gas(provider: $0.gasProvider, type: $0.gasType),
-                amount: $0.amount, price: $0.price)
+                amount: $0.amount, price: $0.price,
+                createdAt: $0.date, uuid: UUID(uuidString: $0.uuid) ?? UUID())
             })
 
         return .success(allRecords)
@@ -46,6 +47,7 @@ public class RealmRecordsDataStore: RecordsDataStore {
         newRecord.gasType = record.gas.type
         newRecord.amount = record.amount
         newRecord.price = record.price
+        newRecord.uuid = record.uuid.uuidString
         newRecord.userUUID = userProfile.email
 
         do {
@@ -57,7 +59,7 @@ public class RealmRecordsDataStore: RecordsDataStore {
     }
 
     public func updateRecord(record: GasRefill) -> Result<GasRefill, Error> {
-        let oldRecord = readRecord(uuid: record.uuid)
+        let oldRecord = readRecord(uuid: record.uuid.uuidString)
 
         func performUpdate(oldRecord: RealmGasRefill) -> Result<GasRefill, Error> {
             oldRecord.latitude = record.address.latitude
@@ -80,7 +82,7 @@ public class RealmRecordsDataStore: RecordsDataStore {
     }
 
     public func deleteRecord(record: GasRefill) -> Result<Void, Error> {
-        let oldRecord = readRecord(uuid: record.uuid)
+        let oldRecord = readRecord(uuid: record.uuid.uuidString)
 
         func performDelete(oldRecord: RealmGasRefill) -> Result<Void, Error> {
             do {
@@ -94,8 +96,8 @@ public class RealmRecordsDataStore: RecordsDataStore {
         case let .success(oldRecord): return performDelete(oldRecord: oldRecord) }
     }
 
-    private func readRecord(uuid: UUID) -> Result<RealmGasRefill, Error> {
-        let filtered = realm.objects(RealmGasRefill.self).filter("uuid == \(uuid.uuidString)").first
+    private func readRecord(uuid: String) -> Result<RealmGasRefill, Error> {
+        let filtered = realm.objects(RealmGasRefill.self).filter("uuid = %@", uuid).first
         guard let oldRecord = filtered else { return .failure(RealmRecordsDataStoreError.noSuchItem)}
         return .success(oldRecord)
     }

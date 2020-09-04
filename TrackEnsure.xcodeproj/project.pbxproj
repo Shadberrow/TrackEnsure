@@ -80,6 +80,7 @@
 		578CD98C24FEEA0D00971069 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD98B24FEEA0D00971069 /* OnboardingViewModel.swift */; };
 		578CD99024FEF56D00971069 /* LaunchRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD98F24FEF56D00971069 /* LaunchRootView.swift */; };
 		578CD99324FF6CF200971069 /* OnboardingRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CD99124FF6BA400971069 /* OnboardingRootView.swift */; };
+		5790C20E2502688100C287FF /* RecordCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5790C20D2502688100C287FF /* RecordCellViewModel.swift */; };
 		57BFA4C225019BE700767B67 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 57BFA4C125019BE700767B67 /* Realm */; };
 		57BFA4C425019BE700767B67 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 57BFA4C325019BE700767B67 /* RealmSwift */; };
 		57BFA4C725019D2F00767B67 /* RealmGasRefill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BFA4C625019D2F00767B67 /* RealmGasRefill.swift */; };
@@ -235,6 +236,7 @@
 		578CD98F24FEF56D00971069 /* LaunchRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchRootView.swift; sourceTree = "<group>"; };
 		578CD99124FF6BA400971069 /* OnboardingRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRootView.swift; sourceTree = "<group>"; };
 		578CD99524FF942200971069 /* TrackEnsure.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrackEnsure.entitlements; sourceTree = "<group>"; };
+		5790C20D2502688100C287FF /* RecordCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCellViewModel.swift; sourceTree = "<group>"; };
 		57BFA4C625019D2F00767B67 /* RealmGasRefill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGasRefill.swift; sourceTree = "<group>"; };
 		57EB1E67250242270008F0D1 /* SignOutResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutResponder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -286,6 +288,7 @@
 				572E7EB124FFEA1300612161 /* HomeViewModel.swift */,
 				572E7EAF24FFEA0A00612161 /* HomeView.swift */,
 				576FAADC25010A0E00EC1614 /* RecordsViewModel.swift */,
+				5790C20D2502688100C287FF /* RecordCellViewModel.swift */,
 				572E7EBD2500C7F700612161 /* ProfileViewModel.swift */,
 			);
 			path = Home;
@@ -820,6 +823,7 @@
 				578CD95C24FEB8E500971069 /* MainViewModel.swift in Sources */,
 				578CD95F24FEBCF300971069 /* UserSessionRepository.swift in Sources */,
 				578CD92F24FEAF5D00971069 /* Undefined.swift in Sources */,
+				5790C20E2502688100C287FF /* RecordCellViewModel.swift in Sources */,
 				576FAAEB25012C0C00EC1614 /* RecordCreationViewModel.swift in Sources */,
 				572E7EC42500DC3400612161 /* RecordsDataStore.swift in Sources */,
 				57EB1E68250242270008F0D1 /* SignOutResponder.swift in Sources */,

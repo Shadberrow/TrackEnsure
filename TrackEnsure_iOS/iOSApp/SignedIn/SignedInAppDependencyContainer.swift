@@ -81,17 +81,18 @@ public class SignedInAppDependencyContainer {
     }
 
     public func makeStatsViewController() -> StatsViewController {
-        let viewModel = makeRecordsViewModel()
+        let viewModel = makeRecordsViewModel(displayType: .grouped)
         return StatsViewController(viewModel: viewModel)
     }
 
     public func makeRecordsViewController() -> RecordsViewController {
-        let viewModel = makeRecordsViewModel()
+        let viewModel = makeRecordsViewModel(displayType: .normal)
         return RecordsViewController(viewModel: viewModel)
     }
 
-    public func makeRecordsViewModel() -> RecordsViewModel {
-        return RecordsViewModel(recordsDataStore: sharedRecordsDataStore)
+    public func makeRecordsViewModel(displayType: RecordsDisplayType) -> RecordsViewModel {
+        return RecordsViewModel(recordsDataStore: sharedRecordsDataStore,
+                                displayType: displayType)
     }
 
     // Record Creation

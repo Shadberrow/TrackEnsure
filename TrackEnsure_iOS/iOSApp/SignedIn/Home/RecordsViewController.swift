@@ -21,7 +21,7 @@ public class RecordsViewController: NiblessViewController {
     }
 
     public override func loadView() {
-        view = RecordsRootView(viewModel: viewModel, displayType: .normal)
+        view = RecordsRootView(viewModel: viewModel)
     }
 
     public override func viewDidLoad() {

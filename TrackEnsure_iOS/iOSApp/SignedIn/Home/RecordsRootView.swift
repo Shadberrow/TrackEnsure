@@ -13,11 +13,6 @@ import Combine
 
 public class RecordsRootView: NiblessView, UITableViewDelegate, UITableViewDataSource {
 
-    public enum DisplayType {
-        case normal
-        case grouped
-    }
-
     // MARK: - Properties
     // View Model
     let viewModel: RecordsViewModel
@@ -25,17 +20,14 @@ public class RecordsRootView: NiblessView, UITableViewDelegate, UITableViewDataS
     // Subviews
     private var tableView: UITableView!
 
-    private let displayType: DisplayType
-
     // Combine
     private var subscriptions = Set<AnyCancellable>()
 
     private var hierarchyNotReady: Bool = true
 
     // MARK: - Methods
-    public init(viewModel: RecordsViewModel, displayType: DisplayType) {
+    public init(viewModel: RecordsViewModel) {
         self.viewModel = viewModel
-        self.displayType = displayType
         super.init(frame: .zero)
     }
 
@@ -87,5 +79,9 @@ public class RecordsRootView: NiblessView, UITableViewDelegate, UITableViewDataS
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self), for: indexPath)
         viewModel.tableView(setupCell: cell, forRowAt: indexPath)
         return cell
+    }
+
+    public func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return viewModel.tableView(tableView, contextMenuConfigurationForRowAt: indexPath, point: point)
     }
 }

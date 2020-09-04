@@ -50,7 +50,7 @@ public class RecordCreationViewModel {
         let gas = supplierSubject.combineLatest(typeSubject).map { Gas(provider: $0, type: $1) }
 
         _ = locationSubject.compactMap({ $0 }).combineLatest(gas, quantityInt, priceInt)
-            .map({ [unowned self] in GasRefill(address: $0, addressString: self.addressSubject.value ?? "", gas: $1, amount: $2, price: $3) })
+            .map({ [unowned self] in GasRefill(address: $0, addressString: self.addressSubject.value ?? "", gas: $1, amount: $2, price: $3, createdAt: Date(), uuid: UUID()) })
             .map({ [unowned self] in self.recordsDataStore.createRecord(record: $0) })
             .sink(
                 receiveCompletion: { print($0) },

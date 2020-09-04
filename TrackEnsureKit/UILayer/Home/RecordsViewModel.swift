@@ -9,23 +9,32 @@
 import UIKit
 import Combine
 
+public enum RecordsDisplayType {
+    case normal
+    case grouped
+}
+
 public class RecordsViewModel {
 
     // MARK: - Properties
     // View Model
     let recordsDataStore: RecordsDataStore
+    let displayType: RecordsDisplayType
 
     public let tableViewReloadSubject = PassthroughSubject<Void, Never>()
 
-
+    var defaultRecords: [RecordCellViewModel] = []
+    var groupedRecords: [RecordCellViewModel] = []
 
     var records: [GasRefill] = [] {
-        didSet { tableViewReloadSubject.send(()) }
+        didSet { updateData() }
     }
 
     // MARK: - Methods
-    public init(recordsDataStore: RecordsDataStore) {
+    public init(recordsDataStore: RecordsDataStore,
+                displayType: RecordsDisplayType) {
         self.recordsDataStore = recordsDataStore
+        self.displayType = displayType
     }
 
     public func loadRecords() {
@@ -35,33 +44,55 @@ public class RecordsViewModel {
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return records.count
+        switch displayType {
+        case .normal: return defaultRecords.count
+        case .grouped: return groupedRecords.count }
     }
 
     public func tableView(setupCell cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let record = records[indexPath.row]
-        let title = NSAttributedString(string: record.addressString + "\n", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)])
-        let subtitle = NSAttributedString(string: record.gas.provider + " - \(record.amount) L - " + "\(record.price)", attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
-        let attributedString = NSMutableAttributedString()
-        attributedString.append(title)
-        attributedString.append(subtitle)
-        cell.textLabel?.attributedText = attributedString
+        let viewModel = displayType == .normal ? defaultRecords[indexPath.row] : groupedRecords[indexPath.row]
+        cell.textLabel?.attributedText = viewModel.attributedString
         cell.textLabel?.numberOfLines = 0
     }
-}
 
+    public func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        guard displayType == .normal else { return nil }
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { [weak self] suggestedActions in
+            guard let self = self else { return nil }
+            let delete = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
+                guard let recordToDelete = self.defaultRecords[indexPath.row].records.first else { return }
+                switch self.recordsDataStore.deleteRecord(record: recordToDelete) {
+                case .success:
+                    self.defaultRecords.remove(at: indexPath.row)
+                    self.records.removeAll(where: { $0 == recordToDelete })
+                    self.tableViewReloadSubject.send(())
+                case let .failure(error): print(error) }
+            }
 
-class RecordViewModel {
+            return UIMenu(title: "", children: [delete])
+        }
+    }
 
-    // MARK: - Properties
-    let attributedString: NSMutableAttributedString
+    private func updateData() {
+        switch displayType {
+        case .normal:
+            defaultRecords = records.sorted(by: { $0.createdAt > $1.createdAt })
+                .map(RecordCellViewModel.init)
+        case .grouped:
+            groupedRecords = Dictionary(grouping: records, by: { $0.addressString }).values
+                .sorted(by: { $0.map({ $0.price }).reduce(0, +) > $1.map({ $0.price }).reduce(0, +) })
+                .map(RecordCellViewModel.init)
+        }
+        tableViewReloadSubject.send(())
+    }
 
-    // MARK: - Methods
-    init(record: GasRefill) {
-        let title = NSAttributedString(string: record.addressString + "\n", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)])
-        let subtitle = NSAttributedString(string: record.gas.provider + " - \(record.amount) L - " + "\(record.price)", attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
-        self.attributedString = NSMutableAttributedString()
-        self.attributedString.append(title)
-        self.attributedString.append(subtitle)
+    private func deleteRecord(_ record: GasRefill) {
+//        switch recordsDataStore.deleteRecord(record: record) {
+//        case .success:
+//            guard let recordToDelete = defaultRecords[indexPath.row].records.first else { return }
+//            records.remove(at: indexPath.row)
+//            updateData()
+//        case let .failure(error):
+//            print(error) }
     }
 }
