@@ -1,0 +1,6 @@
+framework module Pods_TrackEnsure_iOS {
+  umbrella header "Pods-TrackEnsure_iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

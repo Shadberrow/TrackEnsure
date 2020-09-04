@@ -1,0 +1,6 @@
+framework module Pods_TrackEnsureUIKit {
+  umbrella header "Pods-TrackEnsureUIKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
