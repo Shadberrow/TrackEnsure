@@ -15,7 +15,8 @@ public class RecordsRootView: NiblessView, UITableViewDelegate, UITableViewDataS
 
     // MARK: - Properties
     // View Model
-    let viewModel: RecordsViewModel
+    let viewModel: SignedInViewModel
+    let displayType: RecordsDisplayType
 
     // Subviews
     private var tableView: UITableView!
@@ -26,8 +27,10 @@ public class RecordsRootView: NiblessView, UITableViewDelegate, UITableViewDataS
     private var hierarchyNotReady: Bool = true
 
     // MARK: - Methods
-    public init(viewModel: RecordsViewModel) {
+    public init(viewModel: SignedInViewModel,
+                displayType: RecordsDisplayType) {
         self.viewModel = viewModel
+        self.displayType = displayType
         super.init(frame: .zero)
     }
 
@@ -40,6 +43,7 @@ public class RecordsRootView: NiblessView, UITableViewDelegate, UITableViewDataS
         hierarchyNotReady = false
 
         viewModel.tableViewReloadSubject
+            .receive(on: RunLoop.main)
             .sink { [weak self] in self?.tableView.reloadData() }
             .store(in: &subscriptions)
     }
@@ -72,16 +76,32 @@ public class RecordsRootView: NiblessView, UITableViewDelegate, UITableViewDataS
 
     // MARK: - UITableView Delegate & Data Source
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.tableView(tableView, numberOfRowsInSection: section)
+        return viewModel.tableView(tableView, numberOfRowsInSection: section, displayType: displayType)
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self), for: indexPath)
-        viewModel.tableView(setupCell: cell, forRowAt: indexPath)
+        viewModel.tableView(setupCell: cell, forRowAt: indexPath, displayType: displayType)
         return cell
     }
 
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if displayType == .normal {
+            viewModel.editRecord(at: indexPath)
+        }
+    }
+
     public func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        return viewModel.tableView(tableView, contextMenuConfigurationForRowAt: indexPath, point: point)
+        return viewModel.tableView(tableView, contextMenuConfigurationForRowAt: indexPath, point: point, displayType: displayType)
+    }
+
+    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete: viewModel.deleteRecord(tableView, at: indexPath)
+        default: return }
+    }
+
+    public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return displayType == .normal ? .delete : .none
     }
 }

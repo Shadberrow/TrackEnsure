@@ -12,20 +12,15 @@ import TrackEnsureUIKit
 public class StatsViewController: NiblessViewController {
 
     // MARK: - Properties
-    let viewModel: RecordsViewModel
+    let viewModel: SignedInViewModel
 
     // MARK: - Methods
-    public init(viewModel: RecordsViewModel) {
+    public init(viewModel: SignedInViewModel) {
         self.viewModel = viewModel
         super.init()
     }
 
     public override func loadView() {
-        view = RecordsRootView(viewModel: viewModel)
-    }
-
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewModel.loadRecords()
+        view = RecordsRootView(viewModel: viewModel, displayType: .grouped)
     }
 }

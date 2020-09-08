@@ -13,4 +13,5 @@ public enum SignedInView {
     case home
     case addRecord
     case profile
+    case editRecord(record: GasRefill)
 }

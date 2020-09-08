@@ -52,7 +52,9 @@ public class SignedInViewController: NiblessNavigationController {
         switch view {
         case .home: presentHome()
         case .profile: presentProfile()
-        case .addRecord: presentRecordCreation() }
+        case .addRecord: presentRecordCreation()
+        case let .editRecord(record): presentRecordEdition(record: record)
+        }
     }
 
     private func presentHome() {
@@ -62,6 +64,12 @@ public class SignedInViewController: NiblessNavigationController {
 
     private func presentRecordCreation() {
         let viewController = viewControllerFactory.makeRecordCreationViewController()
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true, completion: nil)
+    }
+
+    private func presentRecordEdition(record: GasRefill) {
+        let viewController = viewControllerFactory.makeRecordEditionViewController(recordToEdit: record)
         viewController.modalPresentationStyle = .fullScreen
         present(viewController, animated: true, completion: nil)
     }
@@ -76,14 +84,6 @@ public class SignedInViewController: NiblessNavigationController {
         observeViewModel()
     }
 
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-
     private func observeViewModel() {
         subscribe(on: viewModel.viewPublisher)
     }
@@ -95,4 +95,5 @@ public protocol SignedInViewControllerFactory {
     func makeHomeViewController() -> HomeViewController
     func makeProfileViewController() -> ProfileViewController
     func makeRecordCreationViewController() -> RecordCreationViewController
+    func makeRecordEditionViewController(recordToEdit: GasRefill) -> RecordCreationViewController
 }

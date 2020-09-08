@@ -17,15 +17,15 @@ public class FakeRecordsDataStore: RecordsDataStore {
         return .success([GasRefill.record_01, GasRefill.record_02])
     }
 
-    public func createRecord(record: GasRefill) -> Result<GasRefill, Error> {
-        undefined()
+    public func createRecord(record: GasRefill, completion: @escaping (Result<GasRefill, Error>) -> Void) {
+
     }
 
-    public func updateRecord(record: GasRefill) -> Result<GasRefill, Error> {
-        undefined()
+    public func updateRecord(record: GasRefill, completion: @escaping (Result<GasRefill, Error>) -> Void) {
+
     }
 
-    public func deleteRecord(record: GasRefill) -> Result<Void, Error> {
-        undefined()
+    public func deleteRecord(record: GasRefill, completion: @escaping (Result<GasRefill, Error>) -> Void) {
+        
     }
 }

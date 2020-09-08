@@ -25,6 +25,7 @@ public class OnboardingViewModel {
 
     // Combine
 
+    public var buttonTitlePublisher: AnyPublisher<String?, Never> { return buttonTitleSubject.eraseToAnyPublisher() }
     public var isButtonEnabled: AnyPublisher<Bool, Never> { return isButtonEnabledSubject.eraseToAnyPublisher() }
 
     public let nameSubject = CurrentValueSubject<String?, Never>(nil)
@@ -33,6 +34,7 @@ public class OnboardingViewModel {
     public let onboardingModeSubject = CurrentValueSubject<Int, Never>(0)
     public let beginEditingSubject = PassthroughSubject<Void, Never>()
 
+    private let buttonTitleSubject = CurrentValueSubject<String?, Never>("Sign In")
     private let isButtonEnabledSubject = CurrentValueSubject<Bool, Never>(true)
     private let credentialsSubject = CurrentValueSubject<Credentials, Never>(("", "", ""))
 
@@ -64,6 +66,14 @@ public class OnboardingViewModel {
                 case Mode.signUp.rawValue: return b
                 default: return false } }
             .subscribe(isButtonEnabledSubject).store(in: &subscriptions)
+
+        self.onboardingModeSubject
+            .map { mode in
+                switch mode {
+                case Mode.signIn.rawValue: return "Sign In"
+                case Mode.signUp.rawValue: return "Sign Up"
+                default: return "Default" } }
+            .subscribe(buttonTitleSubject).store(in: &subscriptions)
     }
 
     deinit { print("DEINIT: ", String(describing: self)) }

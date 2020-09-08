@@ -32,13 +32,13 @@ public class RealmRecordsDataStore: RecordsDataStore {
                 addressString: $0.addressString,
                 gas: Gas(provider: $0.gasProvider, type: $0.gasType),
                 amount: $0.amount, price: $0.price,
-                createdAt: $0.date, uuid: UUID(uuidString: $0.uuid) ?? UUID())
+                createdAt: $0.date, uuid: $0.uuid)
             })
 
         return .success(allRecords)
     }
 
-    public func createRecord(record: GasRefill) -> Result<GasRefill, Error> {
+    public func createRecord(record: GasRefill, completion: @escaping (Result<GasRefill, Error>) -> Void) {
         let newRecord = RealmGasRefill()
         newRecord.latitude = record.address.latitude
         newRecord.longitude = record.address.longitude
@@ -47,53 +47,55 @@ public class RealmRecordsDataStore: RecordsDataStore {
         newRecord.gasType = record.gas.type
         newRecord.amount = record.amount
         newRecord.price = record.price
-        newRecord.uuid = record.uuid.uuidString
+        newRecord.uuid = record.uuid
         newRecord.userUUID = userProfile.email
 
         do {
-            realm.beginWrite()
-            realm.add(newRecord)
-            try realm.commitWrite()
-            return .success(record)
-        } catch { return .failure(error) }
+            try realm.write {
+                realm.add(newRecord)
+                completion(.success(record))
+            }
+        } catch { return completion(.failure(error)) }
     }
 
-    public func updateRecord(record: GasRefill) -> Result<GasRefill, Error> {
-        let oldRecord = readRecord(uuid: record.uuid.uuidString)
+    public func updateRecord(record: GasRefill, completion: @escaping (Result<GasRefill, Error>) -> Void) {
+        let oldRecord = readRecord(uuid: record.uuid)
 
-        func performUpdate(oldRecord: RealmGasRefill) -> Result<GasRefill, Error> {
-            oldRecord.latitude = record.address.latitude
-            oldRecord.longitude = record.address.longitude
-            oldRecord.addressString = record.addressString
-            oldRecord.gasProvider = record.gas.provider
-            oldRecord.gasType = record.gas.type
-            oldRecord.amount = record.amount
-            oldRecord.price = record.price
-
+        func performUpdate(oldRecord: RealmGasRefill, completion: @escaping (Result<GasRefill, Error>) -> Void) {
             do {
-                try realm.write { realm.add(oldRecord) }
-                return .success(record)
-            } catch { return .failure(error) }
+                try realm.write {
+                    oldRecord.latitude = record.address.latitude
+                    oldRecord.longitude = record.address.longitude
+                    oldRecord.addressString = record.addressString
+                    oldRecord.gasProvider = record.gas.provider
+                    oldRecord.gasType = record.gas.type
+                    oldRecord.amount = record.amount
+                    oldRecord.price = record.price
+                    completion(.success(record))
+                }
+            } catch { return completion(.failure(error)) }
         }
 
         switch oldRecord {
-        case let .failure(error): return .failure(error)
-        case let .success(oldRecord): return performUpdate(oldRecord: oldRecord) }
+        case let .failure(error): completion(.failure(error))
+        case let .success(oldRecord): performUpdate(oldRecord: oldRecord, completion: completion) }
     }
 
-    public func deleteRecord(record: GasRefill) -> Result<Void, Error> {
-        let oldRecord = readRecord(uuid: record.uuid.uuidString)
+    public func deleteRecord(record: GasRefill, completion: @escaping (Result<GasRefill, Error>) -> Void) {
+        let oldRecord = readRecord(uuid: record.uuid)
 
-        func performDelete(oldRecord: RealmGasRefill) -> Result<Void, Error> {
+        func performDelete(oldRecord: RealmGasRefill, completion: @escaping (Result<GasRefill, Error>) -> Void) {
             do {
-                try realm.write { realm.delete(oldRecord) }
-                return .success(())
-            } catch { return .failure(error) }
+                try realm.write {
+                    realm.delete(oldRecord)
+                    completion(.success(record))
+                }
+            } catch { return completion(.failure(error)) }
         }
 
         switch oldRecord {
-        case let .failure(error): return .failure(error)
-        case let .success(oldRecord): return performDelete(oldRecord: oldRecord) }
+        case let .failure(error): completion(.failure(error))
+        case let .success(oldRecord): performDelete(oldRecord: oldRecord, completion: completion) }
     }
 
     private func readRecord(uuid: String) -> Result<RealmGasRefill, Error> {
@@ -101,7 +103,6 @@ public class RealmRecordsDataStore: RecordsDataStore {
         guard let oldRecord = filtered else { return .failure(RealmRecordsDataStoreError.noSuchItem)}
         return .success(oldRecord)
     }
-
 }
 
 
