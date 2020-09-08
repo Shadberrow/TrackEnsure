@@ -18,7 +18,7 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
 
     // Subviews
     private var scrollView: UIScrollView!
-    private var contentView: UIStackView!
+    private var contentStack: UIStackView!
 
     private var headerContainer: UIView!
     private var headerTitle: UILabel!
@@ -58,21 +58,25 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
         constructHierarchy()
         activateConstraints()
         hierarchyNotReady = false
+
+        isUserInteractionEnabled = true
     }
 
     private func setupSubviews() {
         backgroundColor = .systemBackground
 
-        scrollView = UIScrollView()
+        scrollView = MyScrollView()
         scrollView.backgroundColor = .clear
         scrollView.isPagingEnabled = true
         scrollView.bounces = false
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
+        scrollView.canCancelContentTouches = false
+        scrollView.delaysContentTouches = true
 
-        contentView = UIStackView(arrangedSubviews: [recordsView, statsView])
-        contentView.axis = .horizontal
-        contentView.distribution = .fillEqually
+        contentStack = UIStackView(arrangedSubviews: [recordsView, statsView])
+        contentStack.axis = .horizontal
+        contentStack.distribution = .fillEqually
 
         headerContainer = UIView()
         headerContainer.backgroundColor = .secondarySystemBackground
@@ -125,7 +129,7 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
         headerContainer.addSubview(segmentContainer)
         headerContainer.addSubview(pageIndicator)
         addSubview(scrollView)
-        scrollView.addSubview(contentView)
+        scrollView.addSubview(contentStack)
         addSubview(footerContainerView)
         footerContainerView.addSubview(actionAddButton)
         footerContainerView.addSubview(actionSignOutButton)
@@ -193,13 +197,13 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
     }
 
     private func activateConstraintsContentView() {
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        let top = contentView.topAnchor.constraint(equalTo: scrollView.topAnchor)
-        let bottom = contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
-        let leading = contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor)
-        let trailing = contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor)
-        let centerY = contentView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor)
-        let width = contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 2)
+        contentStack.translatesAutoresizingMaskIntoConstraints = false
+        let top = contentStack.topAnchor.constraint(equalTo: scrollView.topAnchor)
+        let bottom = contentStack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+        let leading = contentStack.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor)
+        let trailing = contentStack.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor)
+        let centerY = contentStack.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        let width = contentStack.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 2)
         NSLayoutConstraint.activate([top, bottom, leading, trailing, centerY, width])
     }
 
@@ -250,5 +254,15 @@ public class HomeRootView: NiblessView, UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let x = scrollView.contentOffset.x
         pageIndicatorLeadingAnchor.constant = x/2
+    }
+}
+
+
+class MyScrollView: UIScrollView {
+
+    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard let superview = superview else { return false }
+        let pos = gestureRecognizer.location(in: superview)
+        return pos.x < frame.width * 0.15 || pos.x > frame.width * 0.85 ? false : true
     }
 }

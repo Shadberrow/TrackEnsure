@@ -10,6 +10,7 @@ import UIKit
 import TrackEnsureUIKit
 import TrackEnsureKit
 import Combine
+import YVAnchor
 
 public class OnboardingRootView: NiblessView, UITextFieldDelegate {
 
@@ -18,7 +19,6 @@ public class OnboardingRootView: NiblessView, UITextFieldDelegate {
     let viewModel: OnboardingViewModel
 
     // Views
-    private var inputStack: UIStackView!
     private var nameField: UITextField!
     private var nameIcon: UIImageView!
     private var emailField: UITextField!
@@ -30,10 +30,11 @@ public class OnboardingRootView: NiblessView, UITextFieldDelegate {
 
     private let inputImageWidth: CGFloat = 35
     private let inputFieldHeight: CGFloat = 45
+    private let inputSpacingSize: CGFloat = 8
     private var hierarchyNotReady: Bool = true
 
-    private var inputCenterYAnchor: NSLayoutConstraint!
-    private var nameFieldHeightAnchor: NSLayoutConstraint!
+    private var actionButtonBotAnchor: NSLayoutConstraint!
+    private var nameFieldTopAnchor: NSLayoutConstraint!
 
     // Combine
     private var subscriptions = Set<AnyCancellable>()
@@ -115,12 +116,7 @@ public class OnboardingRootView: NiblessView, UITextFieldDelegate {
         passwordField.addTarget(self, action: #selector(handlePasswordChanged), for: .editingChanged)
         passwordField.delegate = self
 
-        inputStack = UIStackView(arrangedSubviews: [nameField, emailField, passwordField])
-        inputStack.axis = .vertical
-        inputStack.spacing = 8
-
         actionButton = UIButton(type: .system)
-        actionButton.setTitle("Sign Up", for: .normal)
         actionButton.titleLabel?.font = .boldSystemFont(ofSize: 18)
         actionButton.backgroundColor = .secondarySystemBackground
         actionButton.layer.cornerRadius = 8
@@ -134,68 +130,67 @@ public class OnboardingRootView: NiblessView, UITextFieldDelegate {
     }
 
     private func constructHierarchy() {
-        addSubview(inputStack)
-        addSubview(actionButton)
         addSubview(segmentedControl)
+        addSubview(nameField)
+        addSubview(emailField)
+        addSubview(passwordField)
+        addSubview(actionButton)
     }
 
     private func activateConstraints() {
+        activateConstraintsSegmentedControl()
         activateConstraintsNameInput()
         activateConstraintsEmailInput()
         activateConstraintsPasswordInput()
-        activateConstraintsInputStack()
         activateConstraintsActionButton()
-        activateConstraintsSegmentedControl()
     }
 
     private func activateConstraintsNameInput() {
-        let width = nameIcon.widthAnchor.constraint(equalToConstant: inputImageWidth)
-        nameFieldHeightAnchor = nameField.heightAnchor.constraint(equalToConstant: 0)
-        NSLayoutConstraint.activate([width, nameFieldHeightAnchor])
+        nameIcon.width(inputImageWidth)
+        nameFieldTopAnchor = nameField.pin(.top, to: emailField.top)
+        nameField.pin(.leading, to: self.leading, constant: 16)
+        nameField.pin(.trailing, to: self.trailing, constant: 16)
+        nameField.height(inputFieldHeight)
     }
 
     private func activateConstraintsEmailInput() {
-        let width = passwordIcon.widthAnchor.constraint(equalToConstant: inputImageWidth)
-        let height = passwordField.heightAnchor.constraint(equalToConstant: inputFieldHeight)
-        NSLayoutConstraint.activate([width, height])
+        emailIcon.width(inputImageWidth)
+        emailField.pin(.bottom, to: passwordField.top, constant: inputSpacingSize)
+        emailField.pin(.leading, to: nameField.leading)
+        emailField.pin(.trailing, to: nameField.trailing)
+        emailField.height(inputFieldHeight)
     }
 
     private func activateConstraintsPasswordInput() {
-        let width = emailIcon.widthAnchor.constraint(equalToConstant: inputImageWidth)
-        let height = emailField.heightAnchor.constraint(equalToConstant: inputFieldHeight)
-        NSLayoutConstraint.activate([width, height])
-    }
-
-    private func activateConstraintsInputStack() {
-        inputStack.translatesAutoresizingMaskIntoConstraints = false
-        let leading = inputStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16)
-        let trailing = inputStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)
-        inputCenterYAnchor = inputStack.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -150)
-        NSLayoutConstraint.activate([leading, trailing, inputCenterYAnchor])
+        passwordIcon.width(inputImageWidth)
+        passwordField.pin(.bottom, to: actionButton.top, constant: inputSpacingSize)
+        passwordField.pin(.leading, to: nameField.leading)
+        passwordField.pin(.trailing, to: nameField.trailing)
+        passwordField.height(inputFieldHeight)
     }
 
     private func activateConstraintsActionButton() {
-        actionButton.translatesAutoresizingMaskIntoConstraints = false
-        let top = actionButton.topAnchor.constraint(equalTo: inputStack.bottomAnchor, constant: 8)
-        let leadgin = actionButton.leadingAnchor.constraint(equalTo: inputStack.leadingAnchor)
-        let trailing = actionButton.trailingAnchor.constraint(equalTo: inputStack.trailingAnchor)
-        let height = actionButton.heightAnchor.constraint(equalToConstant: inputFieldHeight)
-        NSLayoutConstraint.activate([top, leadgin, trailing, height])
+        actionButtonBotAnchor = actionButton.pin(.bottom, to: self.bottom, constant: UIScreen.main.bounds.size.height / 2.3)
+        actionButton.pin(.leading, to: nameField.leading)
+        actionButton.pin(.trailing, to: nameField.trailing)
+        actionButton.height(inputFieldHeight)
     }
 
     private func activateConstraintsSegmentedControl() {
-        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        let bottom = segmentedControl.bottomAnchor.constraint(equalTo: inputStack.topAnchor, constant: -8)
-        let leadgin = segmentedControl.leadingAnchor.constraint(equalTo: inputStack.leadingAnchor)
-        let trailing = segmentedControl.trailingAnchor.constraint(equalTo: inputStack.trailingAnchor)
-        NSLayoutConstraint.activate([bottom, leadgin, trailing])
+        segmentedControl.pin(.bottom, to: nameField.top, constant: inputSpacingSize)
+        segmentedControl.pin(.leading, to: nameField.leading)
+        segmentedControl.pin(.trailing, to: nameField.trailing)
     }
 
     private func changeInputCenterYConstraint(offset: CGFloat) {
-        inputCenterYAnchor.constant = offset == 0 ? 0 : -150
+        actionButtonBotAnchor.constant = offset == 0 ? -(UIScreen.main.bounds.size.height / 2.3) : -(UIScreen.main.bounds.size.height / 2)
+        UIView.animate(withDuration: 0.3, delay: 0.1, usingSpringWithDamping: 0.9, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
+            self.layoutSubviews()
+        })
     }
 
     private func bindToViewModel() {
+        viewModel.buttonTitlePublisher.sink { [weak self] in self?.actionButton.setTitle($0, for: .normal) }.store(in: &subscriptions)
         viewModel.isButtonEnabled.assign(to: \.isEnabled, on: actionButton).store(in: &subscriptions)
         viewModel.beginEditingSubject.sink { [weak self] in self?.beginEditing() }.store(in: &subscriptions)
     }
@@ -236,13 +231,13 @@ public class OnboardingRootView: NiblessView, UITextFieldDelegate {
         viewModel.onboardingModeSubject.send(sender.selectedSegmentIndex)
         switch sender.selectedSegmentIndex {
         case 0:
+            nameFieldTopAnchor.constant = 0
             emailField.becomeFirstResponder()
             nameField.alpha = 0
-            nameFieldHeightAnchor.constant = 0
         case 1:
+            nameFieldTopAnchor.constant = -(inputFieldHeight + inputSpacingSize)
             nameField.becomeFirstResponder()
             nameField.alpha = 1
-            nameFieldHeightAnchor.constant = inputFieldHeight
         default: return }
     }
 

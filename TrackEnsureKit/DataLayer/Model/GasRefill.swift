@@ -17,10 +17,10 @@ public struct GasRefill: Codable, Equatable {
     public let amount: Double
     public let price: Double
     public let createdAt: Date
-    public let uuid: UUID
+    public let uuid: String
 
     // MARK: - Methods
-    public init(address: Location, addressString: String, gas: Gas, amount: Double, price: Double, createdAt: Date, uuid: UUID) {
+    public init(address: Location, addressString: String, gas: Gas, amount: Double, price: Double, createdAt: Date, uuid: String) {
         self.address = address
         self.addressString = addressString
         self.gas = gas
@@ -38,11 +38,11 @@ public extension GasRefill {
                                      addressString: "12 Some Address",
                                      gas: Gas(provider: "", type: ""),
                                      amount: 20, price: 20*25,
-                                     createdAt: Date(), uuid: UUID())
+                                     createdAt: Date(), uuid: "1")
 
     static let record_02 = GasRefill(address: Location(latitude: -33.864308, longitude: 151.209146),
                                      addressString: "13 Some Address",
                                      gas: Gas(provider: "", type: ""),
                                      amount: 20, price: 20*25,
-                                     createdAt: Date(), uuid: UUID())
+                                     createdAt: Date(), uuid: "2")
 }

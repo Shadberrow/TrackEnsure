@@ -11,7 +11,7 @@ import TrackEnsureUIKit
 import UIKit
 import Combine
 
-class RecordCreationDetailRootView: NiblessView {
+class RecordCreationDetailRootView: NiblessView, UITextFieldDelegate {
 
     // MARK: - Properties
     // View Model
@@ -92,6 +92,7 @@ class RecordCreationDetailRootView: NiblessView {
             field.leftViewMode = .always
             field.layer.cornerRadius = 8
             field.addTarget(self, action: #selector(handleTextChanged), for: .editingChanged)
+            field.delegate = self
         }
 
         inputStack = UIStackView(arrangedSubviews: fields)
@@ -148,17 +149,27 @@ class RecordCreationDetailRootView: NiblessView {
     }
 
     private func combineViewModel() {
-        viewModel.addressLabel.assign(to: \.text, on: locationAddress).store(in: &subscriptions)
+        viewModel.addressLabel.receive(on: RunLoop.main).assign(to: \.text, on: locationAddress).store(in: &subscriptions)
+        viewModel.isButtonEnabled.receive(on: RunLoop.main).assign(to: \.isEnabled, on: actionButton).store(in: &subscriptions)
+        viewModel.supplierSubject.receive(on: RunLoop.main).compactMap { $0 }.assign(to: \.text, on: supplierField).store(in: &subscriptions)
+        viewModel.typeSubject.receive(on: RunLoop.main).compactMap { $0 }.assign(to: \.text, on: typeField).store(in: &subscriptions)
+        viewModel.amountSubject.receive(on: RunLoop.main).compactMap { $0 }.assign(to: \.text, on: quantityField).store(in: &subscriptions)
+        viewModel.priceSubject.receive(on: RunLoop.main).compactMap { $0 }.assign(to: \.text, on: priceField).store(in: &subscriptions)
+        viewModel.isDetailSheetOpenSubject.receive(on: RunLoop.main).sink { [weak self] res in
+            if res { self?.showInputStackAnimated() }
+            self?.isExpanded = res
+        }.store(in: &subscriptions)
     }
 
     private func showInputStackAnimated() {
         actionButtonTopAnchor_initial.isActive = false
         actionButtonTopAnchor_expanded.isActive = true
         supplierField.becomeFirstResponder()
-        UIView.animate(withDuration: 0.5, delay: 0.2, options: [.curveEaseIn], animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.5, options: [.curveEaseOut], animations: {
             self.inputStack.alpha = 1
             self.layoutIfNeeded()
         })
+        isExpanded = true
     }
 
     @objc private func handleAciton() {
@@ -167,7 +178,6 @@ class RecordCreationDetailRootView: NiblessView {
         } else {
             showInputStackAnimated()
             viewModel.expandDetailView()
-            isExpanded = true
         }
     }
 
@@ -179,5 +189,11 @@ class RecordCreationDetailRootView: NiblessView {
         case quantityField: viewModel.amountSubject.send(text)
         case priceField: viewModel.priceSubject.send(text)
         default: return }
+    }
+
+    // MARK: - Text Field Delegate
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if !isExpanded { viewModel.expandDetailView() }
+        return true
     }
 }

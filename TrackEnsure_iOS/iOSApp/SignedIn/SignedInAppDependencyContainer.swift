@@ -20,25 +20,27 @@ public class SignedInAppDependencyContainer {
     let userSession: UserSession
     let signedInViewModel: SignedInViewModel
     let sharedRecordsDataStore: RecordsDataStore
+    let firebaseDataStore: FirebaseRecordsDataStore
 
     // MARK: - Methods
 
     public init(userSession: UserSession, appDependencyContainer: AppDependencyContainer) {
-        func makeSignedInViewModel() -> SignedInViewModel {
-            return SignedInViewModel()
-        }
-
         func makeRecordsDataStore() -> RecordsDataStore {
 //            return FakeRecordsDataStore()
             return RealmRecordsDataStore(userProfile: userSession.profile)
+        }
+
+        func makeFirebaseDataStore() -> FirebaseRecordsDataStore {
+            return FirebaseRecordsDataStore(userSession: userSession.remoteSession)
         }
 
         self.userSession = userSession
         self.userSessionRepository = appDependencyContainer.sharedUserSessionRepository
         self.mainViewModel = appDependencyContainer.sharedMainViewModel
 
-        self.signedInViewModel = makeSignedInViewModel()
         self.sharedRecordsDataStore = makeRecordsDataStore()
+        self.firebaseDataStore = makeFirebaseDataStore()
+        self.signedInViewModel = SignedInViewModel(recordsDataStore: sharedRecordsDataStore, firebaseDataStore: self.firebaseDataStore)
     }
 
     // Signed-in
@@ -81,18 +83,11 @@ public class SignedInAppDependencyContainer {
     }
 
     public func makeStatsViewController() -> StatsViewController {
-        let viewModel = makeRecordsViewModel(displayType: .grouped)
-        return StatsViewController(viewModel: viewModel)
+        return StatsViewController(viewModel: signedInViewModel)
     }
 
     public func makeRecordsViewController() -> RecordsViewController {
-        let viewModel = makeRecordsViewModel(displayType: .normal)
-        return RecordsViewController(viewModel: viewModel)
-    }
-
-    public func makeRecordsViewModel(displayType: RecordsDisplayType) -> RecordsViewModel {
-        return RecordsViewModel(recordsDataStore: sharedRecordsDataStore,
-                                displayType: displayType)
+        return RecordsViewController(viewModel: signedInViewModel)
     }
 
     // Record Creation
@@ -104,8 +99,17 @@ public class SignedInAppDependencyContainer {
                                             recordDetailViewController: recordDetailViewController)
     }
 
-    private func makeRecordCreationViewModel() -> RecordCreationViewModel {
-        return RecordCreationViewModel(recordsDataStore: sharedRecordsDataStore)
+    public func makeRecordEditionViewController(recordToEdit: GasRefill) -> RecordCreationViewController {
+        let viewModel = makeRecordCreationViewModel(recordToEdit: recordToEdit)
+        let recordDetailViewController = makeRecordDetailViewController(viewModel: viewModel)
+        return RecordCreationViewController(viewModel: viewModel,
+                                            recordDetailViewController: recordDetailViewController)
+    }
+
+    private func makeRecordCreationViewModel(recordToEdit: GasRefill? = nil) -> RecordCreationViewModel {
+        return RecordCreationViewModel(signedInViewModel: signedInViewModel,
+                                       recordsDataStore: sharedRecordsDataStore,
+                                       record: recordToEdit)
     }
 
     private func makeRecordDetailViewController(viewModel: RecordCreationViewModel) -> RecordDetailViewController {

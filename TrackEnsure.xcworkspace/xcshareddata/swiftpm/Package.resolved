@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "Reachability",
+        "repositoryURL": "https://github.com/ashleymills/Reachability.swift",
+        "state": {
+          "branch": null,
+          "revision": "98e968e7b6c1318fb61df23e347bc319761e8acb",
+          "version": "5.0.0"
+        }
+      },
+      {
         "package": "Realm",
         "repositoryURL": "https://github.com/realm/realm-cocoa",
         "state": {
@@ -17,6 +26,24 @@
           "branch": null,
           "revision": "3d570c234f55c9e718adcc991a198c3f870d5d96",
           "version": "6.0.23"
+        }
+      },
+      {
+        "package": "SwiftQueue",
+        "repositoryURL": "https://github.com/lucas34/SwiftQueue",
+        "state": {
+          "branch": null,
+          "revision": "bc4bc7cd0ceb6b5fc4259176d28cea69641f22a3",
+          "version": "4.3.0"
+        }
+      },
+      {
+        "package": "YVAnchor",
+        "repositoryURL": "https://github.com/Shadberrow/YVAnchor.git",
+        "state": {
+          "branch": null,
+          "revision": "f959104b6d2a52ae8fc7a72dc203d3b7f4a5cdd9",
+          "version": "1.1.3"
         }
       }
     ]

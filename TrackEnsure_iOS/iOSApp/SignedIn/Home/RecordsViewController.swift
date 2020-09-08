@@ -12,28 +12,15 @@ import TrackEnsureUIKit
 public class RecordsViewController: NiblessViewController {
 
     // MARK: - Properties
-    let viewModel: RecordsViewModel
+    let viewModel: SignedInViewModel
 
     // MARK: - Methods
-    public init(viewModel: RecordsViewModel) {
+    public init(viewModel: SignedInViewModel) {
         self.viewModel = viewModel
         super.init()
     }
 
     public override func loadView() {
-        view = RecordsRootView(viewModel: viewModel)
-    }
-
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewModel.loadRecords()
-    }
-
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        view = RecordsRootView(viewModel: viewModel, displayType: .normal)
     }
 }

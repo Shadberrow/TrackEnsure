@@ -11,7 +11,7 @@ import Foundation
 public protocol RecordsDataStore {
 
     func getAllRecords() -> Result<[GasRefill], Never>
-    func createRecord(record: GasRefill) -> Result<GasRefill, Error>
-    func updateRecord(record: GasRefill) -> Result<GasRefill, Error>
-    func deleteRecord(record: GasRefill) -> Result<Void, Error>
+    func createRecord(record: GasRefill, completion: @escaping (Result<GasRefill, Error>) -> Void)
+    func updateRecord(record: GasRefill, completion: @escaping (Result<GasRefill, Error>) -> Void)
+    func deleteRecord(record: GasRefill, completion: @escaping (Result<GasRefill, Error>) -> Void)
 }

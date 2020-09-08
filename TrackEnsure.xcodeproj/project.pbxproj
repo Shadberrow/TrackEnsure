@@ -14,7 +14,6 @@
 		572E7EA924FFDB8F00612161 /* UIViewControllerContainment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7EA824FFDB8F00612161 /* UIViewControllerContainment.swift */; };
 		572E7EAB24FFE9DF00612161 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7EAA24FFE9DF00612161 /* HomeViewController.swift */; };
 		572E7EAD24FFE9EE00612161 /* HomeRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7EAC24FFE9EE00612161 /* HomeRootView.swift */; };
-		572E7EB024FFEA0A00612161 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7EAF24FFEA0A00612161 /* HomeView.swift */; };
 		572E7EB224FFEA1300612161 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7EB124FFEA1300612161 /* HomeViewModel.swift */; };
 		572E7EB425000B4200612161 /* SignedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7EB325000B4200612161 /* SignedInViewController.swift */; };
 		572E7EB625000B5600612161 /* SignedInRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7EB525000B5600612161 /* SignedInRootView.swift */; };
@@ -27,7 +26,9 @@
 		572E7EC42500DC3400612161 /* RecordsDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7EC32500DC3400612161 /* RecordsDataStore.swift */; };
 		572E7EC62500DD8B00612161 /* SignedInAppDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7EC52500DD8B00612161 /* SignedInAppDependencyContainer.swift */; };
 		572E7EC82500DF8100612161 /* FakeRecordsDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E7EC72500DF8100612161 /* FakeRecordsDataStore.swift */; };
-		576FAADD25010A0E00EC1614 /* RecordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FAADC25010A0E00EC1614 /* RecordsViewModel.swift */; };
+		573CD2612506C29D004DD897 /* YVAnchor in Frameworks */ = {isa = PBXBuildFile; productRef = 573CD2602506C29D004DD897 /* YVAnchor */; };
+		573CD26625079ABA004DD897 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573CD26525079ABA004DD897 /* SyncManager.swift */; };
+		5751F2B72507AAEC006D9643 /* SwiftQueue in Frameworks */ = {isa = PBXBuildFile; productRef = 5751F2B62507AAEC006D9643 /* SwiftQueue */; };
 		576FAADF25010ACC00EC1614 /* RecordsRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FAADE25010ACC00EC1614 /* RecordsRootView.swift */; };
 		576FAAE52501296C00EC1614 /* CreateRecordResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FAAE42501296C00EC1614 /* CreateRecordResponder.swift */; };
 		576FAAE825012BC900EC1614 /* RecordCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FAAE725012BC900EC1614 /* RecordCreationViewController.swift */; };
@@ -88,6 +89,7 @@
 		57AE707B25029973003E0F68 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 571466DD250281F0005665DB /* GoogleService-Info.plist */; };
 		57AE707C25029974003E0F68 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 571466DD250281F0005665DB /* GoogleService-Info.plist */; };
 		57AE707D25029974003E0F68 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 571466DD250281F0005665DB /* GoogleService-Info.plist */; };
+		57AE70802502A3A5003E0F68 /* FirebaseRecordsDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AE707F2502A3A5003E0F68 /* FirebaseRecordsDataStore.swift */; };
 		57BFA4C225019BE700767B67 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 57BFA4C125019BE700767B67 /* Realm */; };
 		57BFA4C425019BE700767B67 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 57BFA4C325019BE700767B67 /* RealmSwift */; };
 		57BFA4C725019D2F00767B67 /* RealmGasRefill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BFA4C625019D2F00767B67 /* RealmGasRefill.swift */; };
@@ -186,7 +188,6 @@
 		572E7EA824FFDB8F00612161 /* UIViewControllerContainment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerContainment.swift; sourceTree = "<group>"; };
 		572E7EAA24FFE9DF00612161 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		572E7EAC24FFE9EE00612161 /* HomeRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRootView.swift; sourceTree = "<group>"; };
-		572E7EAF24FFEA0A00612161 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		572E7EB124FFEA1300612161 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		572E7EB325000B4200612161 /* SignedInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedInViewController.swift; sourceTree = "<group>"; };
 		572E7EB525000B5600612161 /* SignedInRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedInRootView.swift; sourceTree = "<group>"; };
@@ -199,8 +200,8 @@
 		572E7EC32500DC3400612161 /* RecordsDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsDataStore.swift; sourceTree = "<group>"; };
 		572E7EC52500DD8B00612161 /* SignedInAppDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedInAppDependencyContainer.swift; sourceTree = "<group>"; };
 		572E7EC72500DF8100612161 /* FakeRecordsDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeRecordsDataStore.swift; sourceTree = "<group>"; };
+		573CD26525079ABA004DD897 /* SyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
 		576800436FD2B448532AD8B5 /* Pods_TrackEnsureUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrackEnsureUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		576FAADC25010A0E00EC1614 /* RecordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsViewModel.swift; sourceTree = "<group>"; };
 		576FAADE25010ACC00EC1614 /* RecordsRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsRootView.swift; sourceTree = "<group>"; };
 		576FAAE42501296C00EC1614 /* CreateRecordResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecordResponder.swift; sourceTree = "<group>"; };
 		576FAAE725012BC900EC1614 /* RecordCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCreationViewController.swift; sourceTree = "<group>"; };
@@ -256,6 +257,7 @@
 		578CD99124FF6BA400971069 /* OnboardingRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRootView.swift; sourceTree = "<group>"; };
 		578CD99524FF942200971069 /* TrackEnsure.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrackEnsure.entitlements; sourceTree = "<group>"; };
 		5790C20D2502688100C287FF /* RecordCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCellViewModel.swift; sourceTree = "<group>"; };
+		57AE707F2502A3A5003E0F68 /* FirebaseRecordsDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRecordsDataStore.swift; sourceTree = "<group>"; };
 		57BFA4C625019D2F00767B67 /* RealmGasRefill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGasRefill.swift; sourceTree = "<group>"; };
 		57EB1E67250242270008F0D1 /* SignOutResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutResponder.swift; sourceTree = "<group>"; };
 		5B9149E63C813A4D454F68CB /* Pods-TrackEnsureUIKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackEnsureUIKit.debug.xcconfig"; path = "Target Support Files/Pods-TrackEnsureUIKit/Pods-TrackEnsureUIKit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5751F2B72507AAEC006D9643 /* SwiftQueue in Frameworks */,
 				57BFA4C425019BE700767B67 /* RealmSwift in Frameworks */,
 				57AE70782502932B003E0F68 /* Pods_TrackEnsureKit.framework in Frameworks */,
 				57BFA4C225019BE700767B67 /* Realm in Frameworks */,
@@ -292,6 +295,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				573CD2612506C29D004DD897 /* YVAnchor in Frameworks */,
 				578CD93124FEB0B700971069 /* TrackEnsureKit.framework in Frameworks */,
 				62A3E1C1A118D35D17D110D3 /* Pods_TrackEnsure_iOS.framework in Frameworks */,
 			);
@@ -315,8 +319,6 @@
 				572E7EB725000BDE00612161 /* SignedInViewModel.swift */,
 				572E7EB925000BFC00612161 /* SignedInView.swift */,
 				572E7EB124FFEA1300612161 /* HomeViewModel.swift */,
-				572E7EAF24FFEA0A00612161 /* HomeView.swift */,
-				576FAADC25010A0E00EC1614 /* RecordsViewModel.swift */,
 				5790C20D2502688100C287FF /* RecordCellViewModel.swift */,
 				572E7EBD2500C7F700612161 /* ProfileViewModel.swift */,
 			);
@@ -450,6 +452,7 @@
 		578CD92D24FEAF4B00971069 /* Reusable */ = {
 			isa = PBXGroup;
 			children = (
+				573CD26525079ABA004DD897 /* SyncManager.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -576,6 +579,7 @@
 				578CD97524FEC93900971069 /* FakeUserSessionDataStore.swift */,
 				57732A7A2501A4FE0022CBE4 /* DiskUserSessionDataStore.swift */,
 				572E7EC72500DF8100612161 /* FakeRecordsDataStore.swift */,
+				57AE707E2502A38E003E0F68 /* Firebase */,
 				57BFA4C525019CEF00767B67 /* Realm */,
 			);
 			path = Implementations;
@@ -629,6 +633,14 @@
 				572E7EC12500DA2F00612161 /* StatsViewController.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		57AE707E2502A38E003E0F68 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				57AE707F2502A3A5003E0F68 /* FirebaseRecordsDataStore.swift */,
+			);
+			path = Firebase;
 			sourceTree = "<group>";
 		};
 		57BFA4C525019CEF00767B67 /* Realm */ = {
@@ -703,6 +715,8 @@
 				578CD94424FEB16400971069 /* PBXTargetDependency */,
 			);
 			name = TrackEnsure;
+			packageProductDependencies = (
+			);
 			productName = TrackEnsure;
 			productReference = 578CD8D624FEA50E00971069 /* TrackEnsure.app */;
 			productType = "com.apple.product-type.application";
@@ -725,6 +739,7 @@
 			packageProductDependencies = (
 				57BFA4C125019BE700767B67 /* Realm */,
 				57BFA4C325019BE700767B67 /* RealmSwift */,
+				5751F2B62507AAEC006D9643 /* SwiftQueue */,
 			);
 			productName = TrackEnsureKit;
 			productReference = 578CD90424FEA94800971069 /* TrackEnsureKit.framework */;
@@ -747,6 +762,9 @@
 				578CD93424FEB0B700971069 /* PBXTargetDependency */,
 			);
 			name = TrackEnsure_iOS;
+			packageProductDependencies = (
+				573CD2602506C29D004DD897 /* YVAnchor */,
+			);
 			productName = TrackEnsure_iOS;
 			productReference = 578CD91D24FEADC100971069 /* TrackEnsure_iOS.framework */;
 			productType = "com.apple.product-type.framework";
@@ -810,6 +828,8 @@
 			mainGroup = 578CD8CD24FEA50E00971069;
 			packageReferences = (
 				57BFA4BC25019BC300767B67 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				573CD25B2506C070004DD897 /* XCRemoteSwiftPackageReference "YVAnchor" */,
+				573CD2672507A394004DD897 /* XCRemoteSwiftPackageReference "SwiftQueue" */,
 			);
 			productRefGroup = 578CD8D724FEA50E00971069 /* Products */;
 			projectDirPath = "";
@@ -982,11 +1002,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				573CD26625079ABA004DD897 /* SyncManager.swift in Sources */,
 				578CD97624FEC93900971069 /* FakeUserSessionDataStore.swift in Sources */,
 				572E7EB224FFEA1300612161 /* HomeViewModel.swift in Sources */,
 				572B103B250197BA00F2B6CF /* RealmRecordsDataStore.swift in Sources */,
 				578CD96924FEC19B00971069 /* NewAccount.swift in Sources */,
-				576FAADD25010A0E00EC1614 /* RecordsViewModel.swift in Sources */,
+				57AE70802502A3A5003E0F68 /* FirebaseRecordsDataStore.swift in Sources */,
 				576FAAE52501296C00EC1614 /* CreateRecordResponder.swift in Sources */,
 				578CD95C24FEB8E500971069 /* MainViewModel.swift in Sources */,
 				571466E225028269005665DB /* FirebaseAuthRemoteApi.swift in Sources */,
@@ -1009,7 +1030,6 @@
 				572E7EC82500DF8100612161 /* FakeRecordsDataStore.swift in Sources */,
 				578CD96F24FEC36400971069 /* FakeAuthRemoteApi.swift in Sources */,
 				578CD97824FECCE000971069 /* TEUserSessionRepository.swift in Sources */,
-				572E7EB024FFEA0A00612161 /* HomeView.swift in Sources */,
 				57BFA4C725019D2F00767B67 /* RealmGasRefill.swift in Sources */,
 				578CD98C24FEEA0D00971069 /* OnboardingViewModel.swift in Sources */,
 				572E7EB825000BDE00612161 /* SignedInViewModel.swift in Sources */,
@@ -1499,6 +1519,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		573CD25B2506C070004DD897 /* XCRemoteSwiftPackageReference "YVAnchor" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Shadberrow/YVAnchor.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.3;
+			};
+		};
+		573CD2672507A394004DD897 /* XCRemoteSwiftPackageReference "SwiftQueue" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lucas34/SwiftQueue";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.0;
+			};
+		};
 		57BFA4BC25019BC300767B67 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa";
@@ -1510,6 +1546,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		573CD2602506C29D004DD897 /* YVAnchor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 573CD25B2506C070004DD897 /* XCRemoteSwiftPackageReference "YVAnchor" */;
+			productName = YVAnchor;
+		};
+		5751F2B62507AAEC006D9643 /* SwiftQueue */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 573CD2672507A394004DD897 /* XCRemoteSwiftPackageReference "SwiftQueue" */;
+			productName = SwiftQueue;
+		};
 		57BFA4C125019BE700767B67 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 57BFA4BC25019BC300767B67 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
