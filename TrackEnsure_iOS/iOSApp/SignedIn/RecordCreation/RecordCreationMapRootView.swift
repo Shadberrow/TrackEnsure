@@ -156,6 +156,9 @@ public class RecordCreationMapRootView: NiblessView, MKMapViewDelegate, CLLocati
     }
 
     @objc private func handleMapTap(_ sender: UITapGestureRecognizer) {
+        endEditing(true)
+        viewModel.isDetailSheetOpenSubject.send(false)
+
         let location = sender.location(in: mapView)
         let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
         let clLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
